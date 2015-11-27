@@ -55,7 +55,7 @@ def contact(request):
 		contact_message = ''' 
 		%s: %s via %s
 		'''%(form_full_name, form_message, form_email)
-		send_mail(subject, contact_message, from_email, [to_email], fail_silently = True )
+		send_mail(subject, contact_message, from_email, to_email, fail_silently = True )
 
 	context = {
 		"form": form
