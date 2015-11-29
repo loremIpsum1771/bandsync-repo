@@ -87,8 +87,8 @@ DATABASES = {
         'NAME': 'ceyron',
         'HOST' : "dm3193.com",
         'PORT' : '3306',
-        'USER' : 'ceyron'
-        'PASSWD' : 'AB74BF43B5C1D9BEDF0BC'
+        'USER' : 'ceyron',
+        'PASSWD' : 'AB74BF43B5C1D9BEDF0BC',
     }
 }
 
