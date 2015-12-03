@@ -84,14 +84,24 @@ WSGI_APPLICATION = 'bandsync.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ceyron',
-        'HOST' : "dm3193.com",
+        'NAME': 'ceyron                                                                                                                                                                                                     ',
+        'HOST' : "127.0.0.1",
         'PORT' : '3306',
         'USER' : 'ceyron',
-        'PASSWD' : 'AB74BF43B5C1D9BEDF0BC',
+        'PASSWORD' : 'AB74BF43B5C1D9BEDF0BC', 
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'jobclub',
+#         'HOST' : "localhost",
+#         'PORT' : '8000',
+#         'USER' : 'ceyron',
+#         'PASSWD' : 'AB74BF43B5C1D9BEDF0BC', 
+#     }
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
