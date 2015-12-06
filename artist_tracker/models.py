@@ -16,15 +16,16 @@ class User(models.Model):
 	full_name = models.CharField(max_length = 120, blank = True, null = True)
 	timestamp = models.DateTimeField(auto_now_add = True, auto_now = False)
 	updated = models.DateTimeField(auto_now_add = False, auto_now = True)
-	invites = models.ManyToManyField('self', through = 'Invite', 
+	invites = models.ManyToManyField(
+		'self', through = 'Invite', 
 		symmetrical = False )
 
 	def __unicode__(self):
 		return self.full_name
 
 class Invite(models.Model):
-	sender_id = models.Foreignkey(User, on_delete = models.CASCADE )
-	recipient_id = models.Foreignkey(User,on_delete = models.CASCADE)
+	sender_id = models.ForeignKey(User, related_name= invite_sender, on_delete = models.CASCADE )
+	recipient_id = models.ForeignKey(User, related_name= invite_recipient, on_delete = models.CASCADE)
 	concert_id = models.AutoField()
 	artist_id = models.AutoField()
 	message = models.CharField(max_length = 120, blank = True, null = True)
@@ -44,8 +45,8 @@ class Artist(models.Model):
 		return self.full_name
 
 class Follow(models.Model):
-	user = models.Foreignkey(Users, on_delete = models.CASCADE)
-	artist = models.Foreignkey(Artist, on_delete = models.CASCADE)
+	user = models.ForeignKey(Users, on_delete = models.CASCADE)
+	artist = models.ForeignKey(Artist, on_delete = models.CASCADE)
 	date_followed = models.DateField()
 
 class Concert(models.Model):
@@ -62,8 +63,8 @@ class Concert(models.Model):
 		return self.email
 
 class ConcertOf(models.Model):
-	artist = models.Foreignkey(Artist, on_delete = models.CASCADE)
-	concert = models.Foreignkey(Concert, on_delete = models.CASCADE)
+	artist = models.ForeignKey(Artist, on_delete = models.CASCADE)
+	concert = models.ForeignKey(Concert, on_delete = models.CASCADE)
 	date_added = models.DateField()
 
 	
