@@ -41,8 +41,12 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #third party apps
+    'registration',
+    #my apps
     'artist_tracker',
 )
 
@@ -92,18 +96,7 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'jobclub',
-#         'HOST' : "localhost",
-#         'PORT' : '8000',
-#         'USER' : 'ceyron',
-#         'PASSWD' : 'AB74BF43B5C1D9BEDF0BC', 
-#     }
-# }
-
-# Internationalization
+        # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
@@ -121,3 +114,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#Django registration redux settings
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True

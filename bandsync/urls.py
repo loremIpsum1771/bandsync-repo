@@ -19,7 +19,8 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^$', 'artist_tracker.views.home', name = 'home'),
     url(r'^contact/$', 'artist_tracker.views.contact', name = 'contact'),
-
+    
 
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^accounts/', include('registration.backends.default.urls')),
 ]
