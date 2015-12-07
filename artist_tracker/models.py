@@ -42,13 +42,13 @@ class SignUp(models.Model):
 
 
 
-# class Invite(models.Model):
-# 	sender_id = models.ForeignKey(User, related_name= invite_sender, on_delete = models.CASCADE )
-# 	recipient_id = models.ForeignKey(User, related_name= invite_recipient, on_delete = models.CASCADE)
-# 	concert_id = models.AutoField()
-# 	artist_id = models.AutoField()
-# 	message = models.CharField(max_length = 120, blank = True, null = True)
-# 	date_sent = models.DateTimeField(auto_now_add = True, auto_now = False)
+class Invite(models.Model):
+	sender_id = models.ForeignKey(User, related_name= "invite_sender", on_delete = models.CASCADE )
+	recipient_id = models.ForeignKey(User, related_name= "invite_recipient", on_delete = models.CASCADE)
+	concert_id = models.AutoField()
+	artist_id = models.AutoField()
+	message = models.CharField(max_length = 120, blank = True, null = True)
+	date_sent = models.DateTimeField(auto_now_add = True, auto_now = False)
 
 
 
@@ -64,6 +64,7 @@ class Concert(models.Model):
 
 	def __unicode__(self):
 		return self.email
+		
 class Artist(models.Model):
 	artist_name = models.CharField(max_length = 120, blank = True, null = True)
 	genre = models.CharField(max_length = 64, blank = True, null = True)

@@ -1,7 +1,7 @@
 from django import forms
 
 
-from .models import SignUp
+from .models import SignUp, Concert, Artist, ConcertOf
 
 class ContactForm(forms.Form):
 	full_name = forms.CharField()
