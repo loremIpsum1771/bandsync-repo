@@ -78,7 +78,7 @@ class Invite(models.Model):
 	sender = models.ForeignKey(User, related_name= "invite_sender", on_delete = models.CASCADE )
 	recipient = models.ForeignKey(User, related_name= "invite_recipient", on_delete = models.CASCADE)
 	concert = models.ForeignKey(Concert, on_delete = models.CASCADE)
-	artist = models.ForeignKney(Artist, on_delete = models.CASCADE)
+	artist = models.ForeignKey(Artist, on_delete = models.CASCADE)
 	message = models.CharField(max_length = 120, blank = True, null = True)
 	date_sent = models.DateTimeField(auto_now_add = True, auto_now = False)
 
