@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'bandsync.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ceyron                                                                                                                                                                                                     ',
+        'NAME': 'ceyron',                                                                                                                                                                                                     ',
         'HOST' : "127.0.0.1",
         'PORT' : '3306',
         'USER' : 'ceyron',
