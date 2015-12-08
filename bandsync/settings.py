@@ -37,6 +37,7 @@ EMAIL_USE_TLS = True
 # Application definition
 
 INSTALLED_APPS = (
+    #django app
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +46,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #third party apps
+    'crispy_forms',
     'registration',
     #my apps
     'artist_tracker',
@@ -85,17 +87,27 @@ WSGI_APPLICATION = 'bandsync.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'ceyron',                                                                                                                                                                                                     
+#         'HOST' : "127.0.0.1",
+#         'PORT' : '3306',
+#         'USER' : 'ceyron',
+#         'PASSWORD' : 'AB74BF43B5C1D9BEDF0BC', 
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ceyron',                                                                                                                                                                                                     
-        'HOST' : "127.0.0.1",
-        'PORT' : '3306',
-        'USER' : 'ceyron',
-        'PASSWORD' : 'AB74BF43B5C1D9BEDF0BC', 
+        'NAME': 'ceyron',
+        'HOST' : "localhost",
+        'PORT' : '8000',
+        'USER' : 'root',
+        'PASSWORD' : 'rasengan', 
     }
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -115,6 +127,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 #Django registration redux settings
 ACCOUNT_ACTIVATION_DAYS = 7
