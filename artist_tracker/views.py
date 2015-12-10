@@ -38,7 +38,15 @@ def home(request):
 			"title" : "Thank you"
 		
 		}
-	return render(request, "home.html", context)
+	return render(request, "base.html", context)
+
+
+
+
+
+
+
+
 
 def contact(request):
 	form = ContactForm(request.POST or None)
