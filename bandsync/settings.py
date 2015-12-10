@@ -123,3 +123,4 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 #Django registration redux settings
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
+SITE_ID = 1
