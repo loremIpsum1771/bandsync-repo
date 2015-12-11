@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.conf import settings
-from .forms import ContactForm, SignUpForm
+from .forms import ContactForm, SignUpForm, SearchForm
 # Create your views here.
 
 from django.core.mail import send_mail
@@ -19,7 +19,6 @@ def home(request):
 		"form" : form
 	}
 
-	
 
 	if form.is_valid():
 		form.save()
@@ -42,6 +41,18 @@ def home(request):
 
 
 
+def search(request):
+	form = SearchForm(request.GET or None)
+	if form.is_valid():
+		form_artistSelect = form.cleaned_data.get("artist_select")
+		form_city = form.cleaned_data.get("city")
+		form_state = form.cleaned_data.get("state")
+		
+
+	context = {
+		"form" : form
+	}
+	return render(request,"searchform.html" , context)
 
 
 

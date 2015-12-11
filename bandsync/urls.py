@@ -19,6 +19,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^$', 'artist_tracker.views.home', name = 'home'),
     url(r'^contact/$', 'artist_tracker.views.contact', name = 'contact'),
+    url(r'^artistsearch/$', 'artist_tracker.views.search', name = 'artist_search'),
     
 
     url(r'^admin/', include(admin.site.urls)),

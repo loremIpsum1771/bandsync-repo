@@ -8,7 +8,10 @@ class ContactForm(forms.Form):
 	email = forms.EmailField()
 	message = forms.CharField()
 	
-
+class SearchForm(forms.Form):
+	artist_select = forms.CharField()
+	city = forms.CharField()
+	state = forms.CharField()
 
 class SignUpForm(forms.ModelForm):
 	class Meta:
