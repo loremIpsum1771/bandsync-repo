@@ -35,7 +35,11 @@
             </header>
 
 <form id = "search" method= 'POST' action = ''>{% csrf_token %}
-{{ form|crispy }}
+<!-- {{ form|crispy }} -->
+	<input type= "text" name = "artist_select" id = "artist_select" value ="" />
+	<input type= "text" name = "city" id = "city" value ="" />
+	<input type= "text" name = "state" id = "state" value ="" />
+
 
 <input type= 'submit' value= 'Submit'>
 
