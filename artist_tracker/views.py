@@ -42,7 +42,7 @@ def home(request):
 
 
 def search(request):
-	form = SearchForm(request.GET or None)
+	form = SearchForm(request.POST or None)
 	if form.is_valid():
 		form_artistSelect = form.cleaned_data.get("artist_select")
 		form_city = form.cleaned_data.get("city")
