@@ -38,10 +38,11 @@
                 </nav>
             </header>
 
-<form method= 'POST' action = ''>{% csrf_token %}
+<form id = "search" method= 'POST' action = ''>{% csrf_token %}
 {{ form|crispy }}
 
 <input type= 'submit' value= 'Submit'>
+</form>
 
 <br>
 <h1>Concert Invite page </h1>
@@ -165,7 +166,7 @@ function getCookie(name){
     if(document.cookie && document.Cookie != ''){
         var cookies = document.cookie.split(';');
         for(var i = 0; i <cookies.length; i++){
-            var cookie = jquery.trim(cookies[i]);
+            var cookie = jQuery.trim(cookies[i]);
             if(cookie.substring(0, name.length + 1) == (name + '=')){
                 cookieValue = decodeURIComponent(cookie.subtring(name.length + 1));
                 break;
