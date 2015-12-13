@@ -159,7 +159,28 @@ function runMainProgram() {
  buildInvite();
 }
 
+
+function getCookie(name){
+    var cookieValue = null;
+    if(document.cookie && document.Cookie != ''){
+        var cookies = document.cookie.split(';');
+        for(var i = 0; i <cookies.length; i++){
+            var cookie = jquery.trim(cookies[i]);
+            if(cookie.substring(0, name.length + 1) == (name + '=')){
+                cookieValue = decodeURIComponent(cookie.subtring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
+
+var csrftoken = getCookie('csrftoken');
+
 $.ajax({
+    headers: {'X-CSRFToken' :csrftoken},
     dataType:'json',
     url: 'http://api.bandsintown.com/events/search?artists[]=foals&location=New York,NY&radius=150&format=json&app_id=YOUR_APP_ID',
     success: function(data){
@@ -173,6 +194,7 @@ $.ajax({
     }
 
 })
+
 
 
 // var frm = $('#search');
