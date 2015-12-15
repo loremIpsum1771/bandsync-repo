@@ -87,28 +87,19 @@ WSGI_APPLICATION = 'bandsync.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'ceyron',                 
-#         'HOST' : "127.0.0.1",
-#         'PORT' : '3306',
-#         'USER' : 'ceyron',
-#         'PASSWORD' : 'AB74BF43B5C1D9BEDF0BC', 
-#     }
-# }
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ceyron',
-        'HOST' : "localhost",
-        'PORT' : '8000',
-        'USER' : 'root',
-        'PASSWORD' : 'rasengan', 
+        'NAME': 'ceyron',                 
+        'HOST' : "127.0.0.1",
+        'PORT' : '3306',
+        'USER' : 'ceyron',
+        'PASSWORD' : 'AB74BF43B5C1D9BEDF0BC', 
     }
 }
+
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
