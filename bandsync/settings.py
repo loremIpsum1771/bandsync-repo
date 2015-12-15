@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #third party apps
+    'corsheaders',
     'crispy_forms',
     'registration',
     #my apps
@@ -61,6 +62,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 )
 
 ROOT_URLCONF = 'bandsync.urls'
@@ -87,19 +90,28 @@ WSGI_APPLICATION = 'bandsync.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'ceyron',                 
+#         'HOST' : "127.0.0.1",
+#         'PORT' : '3306',
+#         'USER' : 'ceyron',
+#         'PASSWORD' : 'AB74BF43B5C1D9BEDF0BC', 
+#     }
+# }
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ceyron',                 
-        'HOST' : "127.0.0.1",
-        'PORT' : '3306',
-        'USER' : 'ceyron',
-        'PASSWORD' : 'AB74BF43B5C1D9BEDF0BC', 
+        'NAME': 'ceyron',
+        'HOST' : "localhost",
+        'PORT' : '8000',
+        'USER' : 'root',
+        'PASSWORD' : 'rasengan', 
     }
 }
-
-
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -121,6 +133,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 #Django registration redux settings
 ACCOUNT_ACTIVATION_DAYS = 7
