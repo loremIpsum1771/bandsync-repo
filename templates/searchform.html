@@ -74,6 +74,8 @@
 
 <!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
 <script>
+console.log( {{data}} );
+
 var concertData = {};
 var eventInfo = {};
 var ticketInfo = {};
@@ -180,21 +182,21 @@ function getCookie(name){
 
 var csrftoken = getCookie('csrftoken');
 
-$.ajax({
-    headers: {'X-CSRFToken' :csrftoken},
-    dataType:'json',
-    url: 'http://api.bandsintown.com/events/search?artists[]=foals&location=New York,NY&radius=150&format=json&app_id=YOUR_APP_ID',
-    success: function(data){
-        //console.log(data);
-        concertData = data;
-        runMainProgram();
-        $(data.tickets).each(function(index, value){
+// $.ajax({
+//     headers: {'X-CSRFToken' :csrftoken},
+//     dataType:'json',
+//     url: 'http://api.bandsintown.com/events/search?artists[]=foals&location=New York,NY&radius=150&format=json&app_id=YOUR_APP_ID',
+//     success: function(data){
+//         //console.log(data);
+//         concertData = data;
+//         runMainProgram();
+//         $(data.tickets).each(function(index, value){
 
-                console.log(value.p);
-        });
-    }
+//                 console.log(value.p);
+//         });
+//     }
 
-})
+// })
 
 
 

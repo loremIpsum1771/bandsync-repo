@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.conf import settings
 from .forms import ContactForm, SignUpForm, SearchForm
+import json
+import urllib2
+
 # Create your views here.
 
 from django.core.mail import send_mail
@@ -43,13 +46,18 @@ def home(request):
 
 def search(request):
 	form = SearchForm(request.POST or None)
+	url = "http://api.bandsintown.com/events/search?artists[]=foals&location=New%20York,NY&radius=150&format=json&app_id=YOUR_APP_ID"
+	data = json.load(urllib2.urlopen(url))
+
+	
 	if form.is_valid():
 		form_artistSelect = form.cleaned_data.get("artist_select")
 		form_city = form.cleaned_data.get("city")
 		form_state = form.cleaned_data.get("state")
-		
+	
 
 	context = {
+		"data" : data
 		"form" : form
 	}
 	return render(request,"searchform.html" , context)
