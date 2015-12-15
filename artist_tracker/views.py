@@ -57,7 +57,7 @@ def search(request):
 	
 
 	context = {
-		"data" : data
+		"data" : data,
 		"form" : form
 	}
 	return render(request,"searchform.html" , context)
