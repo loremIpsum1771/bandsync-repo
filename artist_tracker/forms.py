@@ -12,6 +12,7 @@ class SearchForm(forms.Form):
 	artist_select = forms.CharField()
 	city = forms.CharField()
 	state = forms.CharField()
+	radius = forms.CharField()
 
 class SignUpForm(forms.ModelForm):
 	class Meta:

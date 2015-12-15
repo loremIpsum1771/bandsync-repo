@@ -45,15 +45,18 @@ def home(request):
 
 
 def search(request):
-	form = SearchForm(request.POST or None)
-	url = "http://api.bandsintown.com/events/search?artists[]=foals&location=New%20York,NY&radius=150&format=json&app_id=YOUR_APP_ID"
-	data = json.load(urllib2.urlopen(url))
-	print data
-	
 	if form.is_valid():
 		form_artistSelect = form.cleaned_data.get("artist_select")
 		form_city = form.cleaned_data.get("city")
 		form_state = form.cleaned_data.get("state")
+		mile_radius = form.cleaned_data.get("radius")
+
+	form = SearchForm(request.POST or None)
+	url = "http://api.bandsintown.com/events/search?artists[]=" + form_artistSelect + "&location=" +form_city+","+ form_state+"&radius="+ mile_radius + "&format=json&app_id=YOUR_APP_ID"
+	data = json.load(urllib2.urlopen(url))
+	print data
+	
+	
 	
 
 	context = {
