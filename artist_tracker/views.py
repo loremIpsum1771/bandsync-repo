@@ -79,4 +79,4 @@ def contact(request):
 
 def profile(request):
 
-	return render(request, "profilepage.html", context)
+	return render(request, "profilepage.html")
