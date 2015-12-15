@@ -76,7 +76,8 @@ class Artist(models.Model):
 # 	date_followed = models.DateField()
 class Invite(models.Model):
 	sender = models.ForeignKey(User, related_name= "invite_sender", on_delete = models.CASCADE )
-	recipient = models.ForeignKey(User, related_name= "invite_recipient", on_delete = models.CASCADE)
+	#recipient = models.ForeignKey(User, related_name= "invite_recipient", on_delete = models.CASCADE)
+	recipient = models.EmailField()
 	concert = models.ForeignKey(Concert, on_delete = models.CASCADE)
 	artist = models.ForeignKey(Artist, on_delete = models.CASCADE)
 	message = models.CharField(max_length = 120, blank = True, null = True)

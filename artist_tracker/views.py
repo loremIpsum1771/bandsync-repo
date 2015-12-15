@@ -55,10 +55,6 @@ def search(request):
 	return render(request,"searchform.html" , context)
 
 
-
-
-
-
 def contact(request):
 	form = ContactForm(request.POST or None)
 	if form.is_valid():
@@ -80,3 +76,7 @@ def contact(request):
 		"form": form
 	}
 	return render(request, "forms.html", context)
+
+def profile(request):
+
+	return render(request, "profilepage.html", context)
