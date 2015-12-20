@@ -71,8 +71,8 @@ class Artist(models.Model):
 		return self.full_name
 
 class Follow(models.Model):
-	user = models.ForeignKey(User, on_delete = models.CASCADE)
 	artist = models.ForeignKey(Artist, on_delete = models.CASCADE)
+	user = models.ForeignKey(User, on_delete = models.CASCADE)
 	date_followed = models.DateField()
 
 class Invite(models.Model):
