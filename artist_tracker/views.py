@@ -62,20 +62,27 @@ def search(request):
 		formatted_dts = [i.get("formatted_datetime") for i in data]
 		ticket_urls = [i.get("ticket_url") for i in data]
 		ticket_statuses = [i.get("ticket_status") for i in data]
-		venues = [i.get("venue") for i in data]
+		venue_names = [i.get("venue").get("name") for i in data]
+		venue_cities = [i.get("venue").get("city") for i in data]
+		venue_region = [i.get("venue").get("region") for i in data]
 
-		print "titles\n"
+
+		print "\ntitles\n"
 		print titles
-		print "raw_dts\n"
+		print "\nraw_dts\n"
 		print raw_dts
-		print "formatted_dts\n"
+		print "\nformatted_dts\n"
 		print formatted_dts
-		print "ticket_urls\n"
+		print "\nticket_urls\n"
 		print ticket_urls
-		print "ticket_statuses\n"
+		print "\nticket_statuses\n"
 		print ticket_statuses
-		print "venues\n"
-		print venues
+		print "\nvenue names\n"
+		print venue_names
+		print "\nvenue cities\n"
+		print venue_cities
+		print "\nvenue region\n"
+		print venue_region
 	
 
 	context = {
