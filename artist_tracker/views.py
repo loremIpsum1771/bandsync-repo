@@ -47,10 +47,10 @@ def home(request):
 def search(request):
 	form = SearchForm(request.POST or None)
 	if form.is_valid():
-		form_artistSelect = quote(form.cleaned_data.get("artist_select"))
-		form_city = quote(form.cleaned_data.get("city"))
-		form_state = quote(form.cleaned_data.get("state"))
-		mile_radius = quote(form.cleaned_data.get("radius"))
+		form_artistSelect = urllib2.quote(form.cleaned_data.get("artist_select"))
+		form_city =   urllib2.quote(form.cleaned_data.get("city"))
+		form_state = urllib2.quote(form.cleaned_data.get("state"))
+		mile_radius = urllib2.quote(form.cleaned_data.get("radius"))
 		print "testing"
 		url = "http://api.bandsintown.com/events/search?artists[]=" + form_artistSelect + "&location=" +form_city+","+ form_state+"&radius="+ mile_radius + "&format=json&app_id=YOUR_APP_ID"
 		data = json.load(urllib2.urlopen(url))
