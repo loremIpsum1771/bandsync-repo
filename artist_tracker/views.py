@@ -55,11 +55,9 @@ def search(request):
 		url = "http://api.bandsintown.com/events/search?artists[]=" + form_artistSelect + "&location=" +form_city+","+ form_state+"&radius="+ mile_radius + "&format=json&app_id=YOUR_APP_ID"
 		data = json.load(urllib2.urlopen(url))
 
-		print data
-		print "data\n"
-		titles = [ i.get("title") for i in data]
+		#titles = [ i.get("title") for i in data]
 		raw_dts = [i.get("datetime") for i in data]
-		formatted_dts = [i.get("formatted_datetime") for i in data]
+		#formatted_dts = [i.get("formatted_datetime") for i in data]
 		ticket_urls = [i.get("ticket_url") for i in data]
 		ticket_statuses = [i.get("ticket_status") for i in data]
 		venue_names = [i.get("venue").get("name") for i in data]
@@ -67,13 +65,14 @@ def search(request):
 		venue_region = [i.get("venue").get("region") for i in data]
 
 
-		print "\ntitles\n"
-		print titles
+
+		# print "\ntitles\n"
+		# print titles
 		print "\nraw_dts\n"
 		print raw_dts
 		print "\nformatted_dts\n"
-		print formatted_dts
-		print "\nticket_urls\n"
+		# print formatted_dts
+		# print "\nticket_urls\n"
 		print ticket_urls
 		print "\nticket_statuses\n"
 		print ticket_statuses
@@ -86,7 +85,13 @@ def search(request):
 	
 
 	context = {
-		
+		"form_artistSelect" : form_artistSelect,
+		"raw_dts" : raw_dts,
+		"ticket_urls" : ticket_urls,
+		"ticket_statuses" : ticket_statuses,
+		"venue_names" : venue_names,
+		"venue_cities" : venue_cities,
+		"venue_region" : venue_region,
 		"form" : form
 	}
 	return render(request,"searchform.html" , context)

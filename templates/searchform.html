@@ -39,7 +39,7 @@
             </header>
 
 <form id = "search" method= 'POST' action = ''>{% csrf_token %}
-{{ form|crispy }}
+{{ form|crispy }} 
 
 <input type= 'submit' value= 'Submit'>
 </form>
@@ -74,88 +74,93 @@
 
 <!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
 <script>
-// console.log( {{data}} );
+console.log( "form_artistSelect\n" + {{form_artistSelect}} );
+console.log( "raw_dts\n" + {{raw_dts}} );
+console.log( "ticket_statuses\n" + {{ticket_statuses}} );
+console.log( "venue_names\n" + {{venue_names}} );
+console.log( "venue_cities\n" + {{venue_cities}} );
+console.log( "venue_region\n" + {{venue_region}} );
 
-// var concertData = {};
-// var eventInfo = {};
-// var ticketInfo = {};
+var concertData = {};
+var eventInfo = {};
+var ticketInfo = {};
 
-// function makeInvite() {
-//     var metaInfo = concertData[i];
+function makeInvite() {
+    var metaInfo = concertData[i];
 
 
     
 
-//     console.log(eventInfo['site']);
+    console.log(eventInfo['site']);
 
-//     for (var i = 0; i < concertData.length; i++) {
-//         var json_obj = concertData[i];
-//         var temp = {
-//             'venuename' : json_obj['venue']['name'],
-//             'city' : json_obj['venue']['city'],
-//             'state' : json_obj['venue']['region'],
-//             'country' : json_obj['venue']['country'],
-//             'ticket_url' : json_obj['ticket_url'],
+    for (var i = 0; i < concertData.length; i++) {
+        var json_obj = concertData[i];
+        var temp = {
+            'venuename' : json_obj['venue']['name'],
+            'city' : json_obj['venue']['city'],
+            'state' : json_obj['venue']['region'],
+            'country' : json_obj['venue']['country'],
+            'ticket_url' : json_obj['ticket_url'],
             
 
-//             'artistname' : json_obj['artists'][0]['name'],
-//             'artistsite' : json_obj['artists'][0]['url'],   
-//         };
-//         console.log("Artist Name: " + temp["artistname"]);
+            'artistname' : json_obj['artists'][0]['name'],
+            'artistsite' : json_obj['artists'][0]['url'],   
+        };
+        console.log("Artist Name: " + temp["artistname"]);
 
-//     //     var temp = {
-//     //     'section': "Section: "+ii['l'],
-//     //     'price': "Price: $" + ii['p'],
-//     //     'row': "Row: " + ii['r'],
+    //     var temp = {
+    //     'section': "Section: "+ii['l'],
+    //     'price': "Price: $" + ii['p'],
+    //     'row': "Row: " + ii['r'],
         
-//     // };  
+    // };  
 
         
-//     ticketInfo[i] = temp;
-//     console.log("The value of i is: " + i);
-//     console.log(ticketInfo[i]);
-//     console.log("Ticket info len inside loop" + ticketInfo.length);
-//     }
-//     console.log("Thicket info" + ticketInfo[0]);
-//     return ticketInfo;
-// }
+    ticketInfo[i] = temp;
+    console.log("The value of i is: " + i);
+    console.log(ticketInfo[i]);
+    console.log("Ticket info len inside loop" + ticketInfo.length);
+    }
+    console.log("Thicket info" + ticketInfo[0]);
+    return ticketInfo;
+}
 
-// function buildInvite( ) {
+function buildInvite( ) {
 
-//     var $inviteObj = $('<div id = "inviteObj" style="margin:100px"></div>');
-//     // var $divline = $("<div id = ticketObj></div>");
+    var $inviteObj = $('<div id = "inviteObj" style="margin:100px"></div>');
+    // var $divline = $("<div id = ticketObj></div>");
 
-//     //  $divline.append(
-//     //  'Invite a friend to see ' + eventInfo['band'] + '!<br><br><br> Location: New York, NY <br><br> Venue:' + eventInfo['venuename'] + '<br><br>Available Tickets:'
-//     //  );
+    //  $divline.append(
+    //  'Invite a friend to see ' + eventInfo['band'] + '!<br><br><br> Location: New York, NY <br><br> Venue:' + eventInfo['venuename'] + '<br><br>Available Tickets:'
+    //  );
 
-//     //  $inviteObj.append($divline);
-//     //var $div = $("<div></div>");
+    //  $inviteObj.append($divline);
+    //var $div = $("<div></div>");
     
-//     console.log(eventInfo['band']);
-//     var $table = $("<table style=margin:10px></table>");
-//     console.log("Ticket info len Before for loop " + Object.keys(ticketInfo).length );
-//     for (var j = 0; j < Object.keys(ticketInfo).length; j++) {
-//         var $line = $("<tr></tr>");
-//         $line.append($("<td>venue: </td>").html(ticketInfo[j]["venuename"]));
-//         console.log("Line Append 1: " + ticketInfo[j]["venuename"]);
-//         $line.append($("<td>artist name: $</td>").html(ticketInfo[j]["artistname"]));
-//         console.log("Line Append 2: " + ticketInfo[j]["artistname"]);
-//         $line.append($("<td>city: </td>").html(ticketInfo[j]["city"]));
-//         console.log("Line Append 3: " + ticketInfo[j]["city"]);
-//         $table.append($line);
-//     }
-//     //$table.appendTo(document.body);
-//     //Add a div for the invites
-//     // var $divline2 = $("<div></div>");
-//     // $divline2.append(
-//     //  "Band Description: " + eventInfo["description"] + "<br><br>Band Site: " + eventInfo["site"] + "<br>");
-//     // $inviteObj.append($divline2);
-//     // $inviteObj.appendTo($("#container"));
-//     $table.appendTo($("#ticketObj"));
-//     //$descrLine.appendTo($("#inviteObj"));
+    console.log(eventInfo['band']);
+    var $table = $("<table style=margin:10px></table>");
+    console.log("Ticket info len Before for loop " + Object.keys(ticketInfo).length );
+    for (var j = 0; j < Object.keys(ticketInfo).length; j++) {
+        var $line = $("<tr></tr>");
+        $line.append($("<td>venue: </td>").html(ticketInfo[j]["venuename"]));
+        console.log("Line Append 1: " + ticketInfo[j]["venuename"]);
+        $line.append($("<td>artist name: $</td>").html(ticketInfo[j]["artistname"]));
+        console.log("Line Append 2: " + ticketInfo[j]["artistname"]);
+        $line.append($("<td>city: </td>").html(ticketInfo[j]["city"]));
+        console.log("Line Append 3: " + ticketInfo[j]["city"]);
+        $table.append($line);
+    }
+    //$table.appendTo(document.body);
+    //Add a div for the invites
+    // var $divline2 = $("<div></div>");
+    // $divline2.append(
+    //  "Band Description: " + eventInfo["description"] + "<br><br>Band Site: " + eventInfo["site"] + "<br>");
+    // $inviteObj.append($divline2);
+    // $inviteObj.appendTo($("#container"));
+    $table.appendTo($("#ticketObj"));
+    //$descrLine.appendTo($("#inviteObj"));
 
-// }
+}
 // function runMainProgram() {
 // //console.log(concertData['global']);
 //  makeInvite();
