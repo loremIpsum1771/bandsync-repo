@@ -56,8 +56,6 @@ def search(request):
 		data = json.load(urllib2.urlopen(url))
 		print data
 	
-	
-	
 
 	context = {
 		
