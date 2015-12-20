@@ -57,7 +57,7 @@ def search(request):
 
 		#titles = [ i.get("title") for i in data]
 		raw_dts = ["".join(i.get("datetime")) for i in data]
-		"".join()
+		
 		#formatted_dts = [i.get("formatted_datetime") for i in data]
 		ticket_urls = ["".join(i.get("ticket_url")) for i in data]
 		ticket_statuses = ["".join(i.get("ticket_status")) for i in data]
