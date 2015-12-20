@@ -54,7 +54,7 @@ def search(request):
 		print "testing"
 		url = "http://api.bandsintown.com/events/search?artists[]=" + form_artistSelect + "&location=" +form_city+","+ form_state+"&radius="+ mile_radius + "&format=json&app_id=YOUR_APP_ID"
 		data = json.load(urllib2.urlopen(url))
-		titles = [ i.get("titles") for i in data]
+		titles = [ i.get("title") for i in data]
 		raw_dts = [i.get("datetime") for i in data]
 		formatted_dts = [i.get("formatted_datetime") for i in data]
 		ticket_urls = [i.get("ticket_url") for i in data]
