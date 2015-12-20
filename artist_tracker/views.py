@@ -51,9 +51,12 @@ def search(request):
 		form_city =   urllib2.quote(form.cleaned_data.get("city"))
 		form_state = urllib2.quote(form.cleaned_data.get("state"))
 		mile_radius = urllib2.quote(form.cleaned_data.get("radius"))
-		print "testing"
+		#print "testing"
 		url = "http://api.bandsintown.com/events/search?artists[]=" + form_artistSelect + "&location=" +form_city+","+ form_state+"&radius="+ mile_radius + "&format=json&app_id=YOUR_APP_ID"
 		data = json.load(urllib2.urlopen(url))
+
+		print data
+		print "data\n"
 		titles = [ i.get("title") for i in data]
 		raw_dts = [i.get("datetime") for i in data]
 		formatted_dts = [i.get("formatted_datetime") for i in data]
@@ -61,11 +64,17 @@ def search(request):
 		ticket_statuses = [i.get("ticket_status") for i in data]
 		venues = [i.get("venue") for i in data]
 
+		print "titles\n"
 		print titles
+		print "raw_dts\n"
 		print raw_dts
+		print "formatted_dts\n"
 		print formatted_dts
+		print "ticket_urls\n"
 		print ticket_urls
+		print "ticket_statuses\n"
 		print ticket_statuses
+		print "venues\n"
 		print venues
 	
 
