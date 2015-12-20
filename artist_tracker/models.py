@@ -46,7 +46,7 @@ class SignUp(models.Model):
 
 
 class Concert(models.Model):
-	email = models.EmailField()
+	user = models.ForeignKey(User, on_delete = models.CASCADE)
 	concert_name = models.CharField(max_length = 120, blank = True, null = True)
 	venue = models.CharField(max_length = 120, blank = True, null = True)
 	city = models.CharField(max_length = 120, blank = True, null = True)
@@ -70,10 +70,11 @@ class Artist(models.Model):
 	def __unicode__(self):
 		return self.full_name
 
-# class Follow(models.Model):
-# 	user = models.ForeignKey(Users, on_delete = models.CASCADE)
-# 	artist = models.ForeignKey(Artist, on_delete = models.CASCADE)
-# 	date_followed = models.DateField()
+class Follow(models.Model):
+	user = models.ForeignKey(Users, on_delete = models.CASCADE)
+	artist = models.ForeignKey(Artist, on_delete = models.CASCADE)
+	date_followed = models.DateField()
+
 class Invite(models.Model):
 	sender = models.ForeignKey(User, related_name= "invite_sender", on_delete = models.CASCADE )
 	#recipient = models.ForeignKey(User, related_name= "invite_recipient", on_delete = models.CASCADE)
@@ -90,14 +91,6 @@ class ConcertOf(models.Model):
 	date_added = models.DateField()
 
 	
-# class calendar(models.Model):
-# 	email = models.EmailField()
-# 	full_name = models.CharField(max_length = 120, blank = True, null = True)
-# 	timestamp = models.DateTimeField(auto_now_add = True, auto_now = False)
-# 	updated = models.DateTimeField(auto_now_add = False, auto_now = True)
-
-# 	def __unicode__(self):
-# 		return self.email
 
 
 
