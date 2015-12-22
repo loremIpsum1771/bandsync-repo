@@ -86,6 +86,7 @@ def search(request):
 	
 
 		context = {
+			"form" : form
 			"form_artistSelect" : form_artistSelect,
 			"raw_dts" : raw_dts,
 			"ticket_urls" : ticket_urls,
@@ -93,7 +94,12 @@ def search(request):
 			"venue_names" : venue_names,
 			"venue_cities" : venue_cities,
 			"venue_region" : venue_region,
-			"form" : form
+			
+		}
+	else:
+		context = {
+			"form" : form	
+
 		}
 	return render(request,"searchform.html" , context)
 
