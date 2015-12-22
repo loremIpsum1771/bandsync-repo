@@ -59,7 +59,7 @@ def search(request):
 		raw_dts = [i.get("datetime") for i in data]
 		
 		#formatted_dts = [i.get("formatted_datetime") for i in data]
-		ticket_urls = i.get("ticket_url") for i in data]
+		ticket_urls = [i.get("ticket_url") for i in data]
 		ticket_statuses = [i.get("ticket_status") for i in data]
 		venue_names = [i.get("venue").get("name") for i in data]
 		venue_cities = [i.get("venue").get("city") for i in data]
