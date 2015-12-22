@@ -44,13 +44,13 @@
 <input type= 'submit' value= 'Submit'>
 
 <div id = "container">
-<ul id = "results" class="list-group">
+<!-- <ul id = "results" class="list-group">
   <li class="list-group-item">Cras justo odio</li>
-  <!-- <li class="list-group-item">Dapibus ac facilisis in</li>
+  <li class="list-group-item">Dapibus ac facilisis in</li>
   <li class="list-group-item">Morbi leo risus</li>
   <li class="list-group-item">Porta ac consectetur ac</li>
-  <li class="list-group-item">Vestibulum at eros</li> -->
-  </ul>
+  <li class="list-group-item">Vestibulum at eros</li>
+  </ul> -->
 </div>
 
 </form>
@@ -73,21 +73,22 @@ var concertData = {};
 var eventInfo = {};
 var ticketInfo = {};
 
-var $divline = $("<div id = ticketObj></div>");
+
+
+
 //console.log("length of artist list" + {{venue_names}}.length );
 var venues = {{venues|safe}};
 console.log("length of artist list" + venues.length);
+var $list = $("<ul  class='list-group'>");
 for(var i = 0; i < venues.length; i++){
     
-    $divline.append('Artist {{form_artistSelect}}  Location: ' venues[i].city ', 'venues[i].region' Venue: ' + venues[i].name
-
- ); 
+    $list.append("<li class='list-group-item'>Artist {{form_artistSelect}}  Location: " venues[i].city ', 'venues[i].region' Venue: ' + venues[i].name) + "</ul>"; 
 
 }
 
-var $resultObj = $('<div id = "inviteObj" style="margin:100px"></div>');
-$resultObj.append($divline);
-$resultObj.appendTo($("#results"));
+// var $resultObj = $('<div id = "inviteObj" style="margin:100px"></div>');
+// $resultObj.append($divline);
+$list.appendTo($("#container"));
 
      
 
