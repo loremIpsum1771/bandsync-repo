@@ -74,9 +74,11 @@ var eventInfo = {};
 var ticketInfo = {};
 
     var $divline = $("<div id = ticketObj></div>");
+    console.log("length of artist list" + {{form_artistSelect}}.length );
     for(var i = 0; i < {{form_artistSelect}}.length; i++){
         
         $divline.append('Artist ' + {{form_artistSelect}}[i] + '  Location: ' {{venue_cities}} ', '{{venue_region}}' Venue: ' + {{venue_names}} 
+
      ); 
     
     }
