@@ -67,8 +67,6 @@
 
 
 
-
-
 var concertData = {};
 var eventInfo = {};
 var ticketInfo = {};
@@ -82,7 +80,7 @@ console.log("length of artist list" + venues.length);
 var $list = $("<ul  class='list-group'>");
 for(var i = 0; i < venues.length; i++){
     
-    $list.append("<li class='list-group-item'>Artist {{form_artistSelect}}  Location: " venues[i].city ', 'venues[i].region' Venue: ' + venues[i].name + "</ul>"); 
+    $list.append("<li class='list-group-item'>Artist {{form_artistSelect}}  Location: " + venues[i].city + ', ' + venues[i].region +' Venue: ' + venues[i].name + "</li>"); 
 
 }
 
