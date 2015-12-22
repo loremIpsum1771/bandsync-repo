@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.conf import settings
 from .forms import ContactForm, SignUpForm, SearchForm
-import json, ast
+import json
 import urllib2
 
 # Create your views here.
@@ -53,17 +53,17 @@ def search(request):
 		mile_radius = urllib2.quote(form.cleaned_data.get("radius"))
 		#print "testing"
 		url = "http://api.bandsintown.com/events/search?artists[]=" + form_artistSelect + "&location=" +form_city+","+ form_state+"&radius="+ mile_radius + "&format=json&app_id=YOUR_APP_ID"
-		data = ast.literal_eval(json.load(urllib2.urlopen(url)))
+		data = json.load(urllib2.urlopen(url))
 
 		#titles = [ i.get("title") for i in data]
-		raw_dts = [i.get("datetime") for i in data]
+		raw_dts = [i.get("datetime").encode("utf-8") for i in data]
 		
 		#formatted_dts = [i.get("formatted_datetime") for i in data]
-		ticket_urls = [i.get("ticket_url") for i in data]
-		ticket_statuses = [i.get("ticket_status") for i in data]
-		venue_names = [i.get("venue").get("name") for i in data]
-		venue_cities = [i.get("venue").get("city") for i in data]
-		venue_region = [i.get("venue").get("region") for i in data]
+		ticket_urls = [i.get("ticket_url").encode("utf-8") for i in data]
+		ticket_statuses = [i.get("ticket_status").encode("utf-8") for i in data]
+		venue_names = [i.get("venue").get("name").encode("utf-8") for i in data]
+		venue_cities = [i.get("venue").get("city").encode("utf-8") for i in data]
+		venue_region = [i.get("venue").get("region").encode("utf-8") for i in data]
 
 
 
