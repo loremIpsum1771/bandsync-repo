@@ -42,35 +42,19 @@
 {{ form|crispy }} 
 
 <input type= 'submit' value= 'Submit'>
-</form>
-<h3>{{form_artistSelect}}</h3>
-<br>
-<!-- <h1>Concert Invite page </h1> -->
-<br><br><br>
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Invite a friend to a concert</button>
 
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Invitation</h4>
-      </div>
-      <div class="modal-body">
-        
-        <div id="container">  </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
+<div id = "container">
+<ul id = "results" class="list-group">
+  <li class="list-group-item">Cras justo odio</li>
+  <!-- <li class="list-group-item">Dapibus ac facilisis in</li>
+  <li class="list-group-item">Morbi leo risus</li>
+  <li class="list-group-item">Porta ac consectetur ac</li>
+  <li class="list-group-item">Vestibulum at eros</li> -->
+  </ul>
 </div>
 
+</form>
+ 
 
 <!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
 <script>
@@ -81,9 +65,58 @@ console.log( "venue_names\n" + {{venue_names}} );
 console.log( "venue_cities\n" + {{venue_cities}} );
 console.log( "venue_region\n" + {{venue_region}} );
 
+
+
+
+
 var concertData = {};
 var eventInfo = {};
 var ticketInfo = {};
+
+    var $divline = $("<div id = ticketObj></div>");
+    for(var i = 0; i < {{form_artistSelect}}.length; i++){
+        
+        $divline.append('Artist ' + {{form_artistSelect}}[i] + '  Location: ' {{venue_cities}} ', '{{venue_region}}' Venue: ' + {{venue_names}} 
+     ); 
+    
+    }
+
+    var $resultObj = $('<div id = "inviteObj" style="margin:100px"></div>');
+    $resultObj.append($divline);
+    $resultObj.appendTo($("#results"));
+
+     
+
+    //  $inviteObj.append($divline);
+    // var $div = $("<div></div>");
+    
+    // console.log(eventInfo['band']);
+    // var $table = $("<table style=margin:10px></table>");
+    // console.log("Ticket info len Before for loop " + Object.keys(ticketInfo).length );
+    // for (var j = 0; j < Object.keys(ticketInfo).length; j++) {
+    //     var $line = $("<tr></tr>");
+    //     $line.append($("<td>venue: </td>").html(ticketInfo[j]["venuename"]));
+    //     console.log("Line Append 1: " + ticketInfo[j]["venuename"]);
+    //     $line.append($("<td>artist name: $</td>").html(ticketInfo[j]["artistname"]));
+    //     console.log("Line Append 2: " + ticketInfo[j]["artistname"]);
+    //     $line.append($("<td>city: </td>").html(ticketInfo[j]["city"]));
+    //     console.log("Line Append 3: " + ticketInfo[j]["city"]);
+    //     $table.append($line);
+    // }
+
+
+    // $table.appendTo(document.body);
+    // Add a div for the invites
+    // var $divline2 = $("<div></div>");
+    // $divline2.append(
+    //  "Band Description: " + eventInfo["description"] + "<br><br>Band Site: " + eventInfo["site"] + "<br>");
+    // $inviteObj.append($divline2);
+    // $inviteObj.appendTo($("#container"));
+    // $table.appendTo($("#ticketObj"));
+    // $descrLine.appendTo($("#inviteObj"));
+
+
+
 
 function makeInvite() {
     var metaInfo = concertData[i];
@@ -150,6 +183,8 @@ function buildInvite( ) {
         console.log("Line Append 3: " + ticketInfo[j]["city"]);
         $table.append($line);
     }
+
+
     //$table.appendTo(document.body);
     //Add a div for the invites
     // var $divline2 = $("<div></div>");
@@ -236,6 +271,32 @@ function buildInvite( ) {
 
 
 // </script>
+<br>
+<!-- <h1>Concert Invite page </h1> -->
+<br><br><br>
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Invite a friend to a concert</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Invitation</h4>
+      </div>
+      <div class="modal-body">
+        
+        <div id="container">  </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
      <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
      <script src="../../dist/js/bootstrap.min.js"></script>
