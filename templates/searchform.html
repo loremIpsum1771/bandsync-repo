@@ -84,7 +84,7 @@ var $list = $("<ul  class='list-group'>");
 for(var i = 0; i < venues.length; i++){
     
     $list.append("<li class='list-group-item'>Artist: {{form_artistSelect}}  Location: " + venues[i].city + ', ' + venues[i].region +' Venue: ' + venues[i].name + 
-       "Date: " + dates[i] + "tickets status: " + ticket_statuses[i] + "<br><a href = '" + ticket_urls[i] +"'" + "> ticket link</a></li>"); 
+       "Date: " + dates[i] + "tickets status: " + ticket_statuses[i] + "<br><a href = '" + ticket_urls[i] +"'" + "> ticket link</a> " + "<button id ='invite'type='button' class='btn btn-primary-outline'>Invite a friend</button>  <button id = 'save' type='button' class='btn btn-primary-outline'> Save concert</button> </li>"); 
 
 }
 
@@ -92,7 +92,35 @@ for(var i = 0; i < venues.length; i++){
 // $resultObj.append($divline);
 $list.appendTo($("#container"));
 
-     
+$("#save").click(function() {
+    $.ajax({
+        url: your_url,
+        method: 'POST',
+        data: {
+            name: value,
+            click: True
+        }
+        success:function(data){
+
+        }
+
+    });
+});
+   
+$("#invite").click(function() {
+    $.ajax({
+        url: your_url,
+        method: 'POST',
+        data: {
+            name: value,
+            click: True
+        }
+        success:function(data){
+            
+        }
+
+    });
+});  
 
     //  $inviteObj.append($divline);
     // var $div = $("<div></div>");
