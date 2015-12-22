@@ -86,7 +86,7 @@ def search(request):
 	
 
 		context = {
-			"form" : form
+			"form" : form,
 			"form_artistSelect" : form_artistSelect,
 			"raw_dts" : raw_dts,
 			"ticket_urls" : ticket_urls,
