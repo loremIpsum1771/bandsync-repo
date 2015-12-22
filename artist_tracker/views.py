@@ -56,14 +56,15 @@ def search(request):
 		data = json.load(urllib2.urlopen(url))
 
 		#titles = [ i.get("title") for i in data]
-		raw_dts = [i.get("datetime").encode("utf-8") for i in data]
+		raw_dts = json.dumps([i.get("datetime") for i in data])
 		
 		#formatted_dts = [i.get("formatted_datetime") for i in data]
-		ticket_urls = [i.get("ticket_url").encode("utf-8") for i in data]
-		ticket_statuses = [i.get("ticket_status").encode("utf-8") for i in data]
-		venue_names = [i.get("venue").get("name").encode("utf-8") for i in data]
-		venue_cities = [i.get("venue").get("city").encode("utf-8") for i in data]
-		venue_region = [i.get("venue").get("region").encode("utf-8") for i in data]
+		ticket_urls = json.dumps([i.get("ticket_url").encode("utf-8") for i in data])
+		ticket_statuses = json.dumps([i.get("ticket_status").encode("utf-8") for i in data])
+		venues = json.dumps([i["venue"] for i in data])
+		# venue_names = [i.get("venue").get("name").encode("utf-8") for i in data]
+		# venue_cities = [i.get("venue").get("city").encode("utf-8") for i in data]
+		# venue_region = [i.get("venue").get("region").encode("utf-8") for i in data]
 
 
 
