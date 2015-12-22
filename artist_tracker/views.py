@@ -78,12 +78,12 @@ def search(request):
 		print ticket_urls
 		print "\nticket_statuses\n"
 		print ticket_statuses
-		print "\nvenue names\n"
-		print venue_names
-		print "\nvenue cities\n"
-		print venue_cities
-		print "\nvenue region\n"
-		print venue_region
+		# print "\nvenue names\n"
+		# print venue_names
+		# print "\nvenue cities\n"
+		# print venue_cities
+		# print "\nvenue region\n"
+		# print venue_region
 	
 
 		context = {
