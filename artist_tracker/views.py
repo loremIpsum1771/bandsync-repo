@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.conf import settings
 from .forms import ContactForm, SignUpForm, SearchForm
-import json
+import json, ast
 import urllib2
 
 # Create your views here.
@@ -53,7 +53,7 @@ def search(request):
 		mile_radius = urllib2.quote(form.cleaned_data.get("radius"))
 		#print "testing"
 		url = "http://api.bandsintown.com/events/search?artists[]=" + form_artistSelect + "&location=" +form_city+","+ form_state+"&radius="+ mile_radius + "&format=json&app_id=YOUR_APP_ID"
-		data = json.load(urllib2.urlopen(url))
+		data = ast.literal_eval(json.load(urllib2.urlopen(url)))
 
 		#titles = [ i.get("title") for i in data]
 		raw_dts = [i.get("datetime") for i in data]
