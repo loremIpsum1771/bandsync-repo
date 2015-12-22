@@ -92,10 +92,7 @@ def search(request):
 			"raw_dts" : raw_dts,
 			"ticket_urls" : ticket_urls,
 			"ticket_statuses" : ticket_statuses,
-			"venue_names" : venue_names,
-			"venue_cities" : venue_cities,
-			"venue_region" : venue_region,
-			
+			"venues" : venues,
 		}
 	else:
 		context = {
