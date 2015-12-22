@@ -58,12 +58,12 @@
 
 <!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
 <script>
-console.log( "form_artistSelect\n" + {{form_artistSelect}} );
-console.log( "raw_dts\n" + {{raw_dts}} );
-console.log( "ticket_statuses\n" + {{ticket_statuses}} );
-console.log( "venue_names\n" + {{venue_names}} );
-console.log( "venue_cities\n" + {{venue_cities}} );
-console.log( "venue_region\n" + {{venue_region}} );
+// console.log( "form_artistSelect\n" + {{form_artistSelect}} );
+// console.log( "raw_dts\n" + {{raw_dts}} );
+// console.log( "ticket_statuses\n" + {{ticket_statuses}} );
+// console.log( "venue_names\n" + {{venue_names}} );
+// console.log( "venue_cities\n" + {{venue_cities}} );
+// console.log( "venue_region\n" + {{venue_region}} );
 
 
 
@@ -74,10 +74,10 @@ var eventInfo = {};
 var ticketInfo = {};
 
     var $divline = $("<div id = ticketObj></div>");
-    console.log("length of artist list" + {{form_artistSelect}}.length );
-    for(var i = 0; i < {{form_artistSelect}}.length; i++){
+    console.log("length of artist list" + {{venue_names}}.length );
+    for(var i = 0; i < {{venue_names}}.length; i++){
         
-        $divline.append('Artist ' + {{form_artistSelect}}[i] + '  Location: ' {{venue_cities}} ', '{{venue_region}}' Venue: ' + {{venue_names}} 
+        $divline.append('Artist ' + {{form_artistSelect}} + '  Location: ' {{venue_cities}}[i] ', '{{venue_region}}[i]' Venue: ' + {{venue_names}}[i]
 
      ); 
     
