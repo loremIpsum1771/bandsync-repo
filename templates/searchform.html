@@ -76,9 +76,9 @@ var ticketInfo = {};
 
 //console.log("length of artist list" + {{venue_names}}.length );
 var venues = {{venues|safe}};
-var dates = {{raw_dts}};
-var ticket_statuses = {{ticket_statuses}};
-var ticket_urls = {{ticket_urls}};
+var dates = {{raw_dts|safe}};
+var ticket_statuses = {{ticket_statuses|safe}};
+var ticket_urls = {{ticket_urls|safe}};
 console.log("length of artist list" + venues.length);
 var $list = $("<ul  class='list-group'>");
 for(var i = 0; i < venues.length; i++){
