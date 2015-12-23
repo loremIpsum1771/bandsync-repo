@@ -3,6 +3,7 @@ from django.conf import settings
 from .forms import ContactForm, SignUpForm, SearchForm
 import json
 import urllib2
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -85,7 +86,6 @@ def search(request):
 		# print "\nvenue region\n"
 		# print venue_region
 	
-
 		context = {
 			"form" : form,
 			"form_artistSelect" : form_artistSelect,
@@ -100,6 +100,65 @@ def search(request):
 
 		}
 	return render(request,"searchform.html" , context)
+
+
+# def invite(request, invite_name_url):
+# 	context = RequestContext(request)
+# 	invite_data = get_invite_Info()
+
+# 	context_dict = {'invite_data': invite_data }
+
+# 	try:
+
+# 	return render(request, "searchform.html")
+
+@login_required
+def invite_sender(request):
+	context = RequestContext(request)
+	concertDate = None
+	recipient = None
+	concert_id = None
+	artist_id = None
+	message = None
+	rec_name = None
+	ticket_url = None
+	if request.method == 'GET':
+		concertDate = request.GET['raw_dts']
+		recipient = request.GET['rec_email']
+		concert_id = request.GET['concert_id']
+		artist_id = request.GET['artist_id']
+		message = request.GET['message']
+		rec_name = request.GET['rec_name']
+		ticket_url = request.GET['ticket_url']
+
+	rec_email = recipient
+	message = message
+	rec_full_name = rec_name
+	concert_url = ticket_url
+
+	
+	subject = "Site contact form"
+	from_email = settings.EMAIL_HOST_USER
+	to_email = [rec_email, from_email, 'celijahh@gmail.com']
+	contact_message = ''' You have received a Concert Invite
+	%s: %s concert tickets url: %s via %s
+	'''%(rec_full_name, message,concert_url ,rec_email)
+	send_mail(subject, contact_message, from_email, to_email, fail_silently =False)
+
+	if request.user.is_authenticated():
+		user_id = request.user.id
+	if user_id:
+		user = User.objects.get(id=int(user_id))
+		concert = Concert.objects.get(id = int(concert_id))
+		artist = Artist.objects.get(id = int(artist_id))
+		if user:
+			invite = Invite(user, rec_email, concert, artist, message )
+			invite.save()
+	return render(request,"searchform.html")
+
+def save(request):
+
+	return render(request, "searchform.html")
 
 
 def contact(request):

@@ -21,7 +21,7 @@ urlpatterns = [
     url(r'^contact/$', 'artist_tracker.views.contact', name = 'contact'),
     url(r'^artistsearch/$', 'artist_tracker.views.search', name = 'artist_search'),
     url(r'^profile/$', 'artist_tracker.views.profile', name = 'profile'),
-    
+    #url(r'^')
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('registration.backends.default.urls')),
