@@ -4,6 +4,7 @@ from .forms import ContactForm, SignUpForm, SearchForm, ModalForm
 import json
 import urllib2
 from django.contrib.auth.decorators import login_required
+from .models import SignUp, Concert, Artist, ConcertOf, Follow, Invite
 
 # Create your views here.
 
@@ -198,5 +199,16 @@ def contact(request):
 	return render(request, "forms.html", context)
 
 def profile(request):
+	# user_concerts = Concert.objects.filter(user = request.user)
+	# print userconcerts
+	# sent_invites = Invite.objects.filter(user = request.user)
+	# print sentinvites
+	# followed_artists = Follow.objects.filter(user = request.user)
+	# print followed_artists
 
-	return render(request, "profilepage.html")
+	# context = {
+	# 	"user_concerts": user_concerts,
+	# 	"sent_invites" : sent_invites,
+	# 	"followed_artists" : followed_artists
+	# }
+	return render(request, "profilepage.html")#, context)

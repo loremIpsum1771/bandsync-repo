@@ -20,13 +20,15 @@
 
 
 {% block content %}
-<!-- 
-<h1>{{ title}}</h1>
+
+<h1>{{ title}} </h1>
+
+
 
 <form method= 'POST' action = ''>{% csrf_token %}
 {{ form }}
 
-<input type= 'submit' value= 'Sign Up'> -->
+<input type= 'submit' value= 'Sign Up'>
 
 
 
@@ -37,6 +39,6 @@
 {% if user.is_authenticated %}
 <div class='row'>
 <div class='col-sm-6 col-sm-offset-3 text-align-center'>
-<p> <a href="/accounts/logout">Logout ?</a>!</p>
+<p> <a href="/accounts/logout.html">Logout?</a>!</p>
 </div>
 {% endif %}
