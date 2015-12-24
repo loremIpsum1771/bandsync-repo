@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.conf import settings
-from .forms import ContactForm, SignUpForm, SearchForm
+from .forms import ContactForm, SignUpForm, SearchForm, ModalForm
 import json
 import urllib2
 from django.contrib.auth.decorators import login_required
@@ -46,12 +46,14 @@ def home(request):
 
 
 def search(request):
-	form = SearchForm(request.POST or None)
-	if form.is_valid():
+	queryform = SearchForm(request.POST or None)
+	modalform = ModalForm(request.POST or None)
+	if queryform.is_valid():
 		form_artistSelect = urllib2.quote(form.cleaned_data.get("artist_select"))
 		form_city =   urllib2.quote(form.cleaned_data.get("city"))
 		form_state = urllib2.quote(form.cleaned_data.get("state"))
 		mile_radius = urllib2.quote(form.cleaned_data.get("radius"))
+
 		#print "testing"
 		url = "http://api.bandsintown.com/events/search?artists[]=" + form_artistSelect + "&location=" +form_city+","+ form_state+"&radius="+ mile_radius + "&format=json&app_id=YOUR_APP_ID"
 		data = json.load(urllib2.urlopen(url))
@@ -87,18 +89,28 @@ def search(request):
 		# print venue_region
 	
 		context = {
-			"form" : form,
+			"queryform" : queryform,
+			"modalform" : modalform,
 			"form_artistSelect" : form_artistSelect,
 			"raw_dts" : raw_dts,
 			"ticket_urls" : ticket_urls,
 			"ticket_statuses" : ticket_statuses,
 			"venues" : venues,
 		}
+
 	else:
 		context = {
-			"form" : form	
+			"queryform" : queryform	
 
 		}
+	if modalform.is_valid():
+		form_recipient = form.cleaned_data.get("rec_email")
+     	form_message = forms.cleaned_data.get("message")
+     	form_recname = forms.cleaned_data.get("rec_name")
+     	print form_recipient
+     	print form message
+     	print form_recname
+     	
 	return render(request,"searchform.html" , context)
 
 
@@ -112,53 +124,53 @@ def search(request):
 
 # 	return render(request, "searchform.html")
 
-@login_required
-def invite_sender(request):
-	context = RequestContext(request)
-	concertDate = None
-	recipient = None
-	concert_id = None
-	artist_id = None
-	message = None
-	rec_name = None
-	ticket_url = None
-	if request.method == 'GET':
-		concertDate = request.GET['raw_dts']
-		recipient = request.GET['rec_email']
-		concert_id = request.GET['concert_id']
-		artist_id = request.GET['artist_id']
-		message = request.GET['message']
-		rec_name = request.GET['rec_name']
-		ticket_url = request.GET['ticket_url']
+# @login_required
+# def invite_sender(request):
+# 	context = RequestContext(request)
+# 	concertDate = None
+# 	recipient = None
+# 	concert_id = None
+# 	artist_id = None
+# 	message = None
+# 	rec_name = None
+# 	ticket_url = None
+# 	if request.method == 'GET':
+# 		concertDate = request.GET['raw_dts']
+# 		recipient = request.GET['rec_email']
+# 		concert_id = request.GET['concert_id']
+# 		artist_id = request.GET['artist_id']
+# 		message = request.GET['message']
+# 		rec_name = request.GET['rec_name']
+# 		ticket_url = request.GET['ticket_url']
 
-	rec_email = recipient
-	message = message
-	rec_full_name = rec_name
-	concert_url = ticket_url
+# 	rec_email = recipient
+# 	message = message
+# 	rec_full_name = rec_name
+# 	concert_url = ticket_url
 
 	
-	subject = "Site contact form"
-	from_email = settings.EMAIL_HOST_USER
-	to_email = [rec_email, from_email, 'celijahh@gmail.com']
-	contact_message = ''' You have received a Concert Invite
-	%s: %s concert tickets url: %s via %s
-	'''%(rec_full_name, message,concert_url ,rec_email)
-	send_mail(subject, contact_message, from_email, to_email, fail_silently =False)
+# 	subject = "Site contact form"
+# 	from_email = settings.EMAIL_HOST_USER
+# 	to_email = [rec_email, from_email, 'celijahh@gmail.com']
+# 	contact_message = ''' You have received a Concert Invite
+# 	%s: %s concert tickets url: %s via %s
+# 	'''%(rec_full_name, message,concert_url ,rec_email)
+# 	send_mail(subject, contact_message, from_email, to_email, fail_silently =False)
 
-	if request.user.is_authenticated():
-		user_id = request.user.id
-	if user_id:
-		user = User.objects.get(id=int(user_id))
-		concert = Concert.objects.get(id = int(concert_id))
-		artist = Artist.objects.get(id = int(artist_id))
-		if user:
-			invite = Invite(user, rec_email, concert, artist, message )
-			invite.save()
-	return render(request,"searchform.html")
+# 	if request.user.is_authenticated():
+# 		user_id = request.user.id
+# 	if user_id:
+# 		user = User.objects.get(id=int(user_id))
+# 		concert = Concert.objects.get(id = int(concert_id))
+# 		artist = Artist.objects.get(id = int(artist_id))
+# 		if user:
+# 			invite = Invite(user, rec_email, concert, artist, message )
+# 			invite.save()
+# 	return render(request,"searchform.html")
 
-def save(request):
+# def save(request):
 
-	return render(request, "searchform.html")
+# 	return render(request, "searchform.html")
 
 
 def contact(request):

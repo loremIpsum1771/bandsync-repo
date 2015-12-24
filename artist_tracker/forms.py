@@ -14,6 +14,11 @@ class SearchForm(forms.Form):
 	state = forms.CharField()
 	radius = forms.CharField()
 
+class ModalForm(forms.Form):
+	 rec_email = forms.CharField()
+     message = forms.CharField()
+     rec_name = forms.CharField()
+
 class SignUpForm(forms.ModelForm):
 	class Meta:
 		model = SignUp

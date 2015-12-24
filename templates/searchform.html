@@ -39,7 +39,7 @@
             </header>
 
 <form id = "search" method= 'POST' action = ''>{% csrf_token %}
-{{ form|crispy }} 
+{{ queryform|crispy }} 
 
 <input type= 'submit' value= 'Submit'>
 </form><br>
@@ -96,51 +96,50 @@ for(var i = 0; i < venues.length; i++){
 // $resultObj.append($divline);
 $list.appendTo($("#container"));
 
-$("#save").click(function() {
-    $.ajax({
-        url: your_url,
-        method: 'POST',
-        data: {
-            name: value,
-            click: True
-        }
-        success:function(data){
+// $("#save").click(function() {
+//     $.ajax({
+//         url: your_url,
+//         method: 'POST',
+//         data: {
+//             name: value,
+//             click: True
+//         }
+//         success:function(data){
 
-        }
+//         }
 
-    });
-});
+//     });
+// });
    
-$("#invite").click(function() {
-    var raw_dt;
-    var rec_email;
-    var concert_id;
-    var artist_id;
-    var message;
-    var rec_name;
-    var ticket_url;
-    var venue;
+// $("#invite").click(function() {
+//     var raw_dt;
+//     var rec_email;//
+//     var concert_id;//
+//     var artist_id;//
+//     var message;//
+//     var rec_name;//
+//     var ticket_url;
+//     var venue;
 
-    raw_dt = $(this).attr("date");
-    //rec_email
-    //concert_id = $(this).attri
-    venue = $(this).attr("venue");
-    ticket_url = $(this).attr("ticket_url");
+//     raw_dt = $(this).attr("date");
+    
+//     venue = $(this).attr("venue");
+//     ticket_url = $(this).attr("ticket_url");
 
 
-    $.ajax({
-        url: your_url,
-        method: 'POST',
-        data: {
-            name: value,
-            click: True
-        }
-        success:function(data){
+//     $.ajax({
+//         url: your_url,
+//         method: 'POST',
+//         data: {
+//             name: value,
+//             click: True
+//         }
+//         success:function(data){
             
-        }
+//         }
 
-    });
-});  
+//     });
+// });  
 
     //  $inviteObj.append($divline);
     // var $div = $("<div></div>");
@@ -345,7 +344,7 @@ function buildInvite( ) {
         
         <div id="container">  </div>
             <form id = "search" method= 'POST' action = ''>{%csrf_token %}
-            {{ form|crispy }} 
+            {{ modalform|crispy }} 
             <input type= 'submit' value= 'Submit'>
             </form>
       </div>
