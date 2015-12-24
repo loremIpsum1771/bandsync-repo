@@ -49,10 +49,10 @@ def search(request):
 	queryform = SearchForm(request.POST or None)
 	modalform = ModalForm(request.POST or None)
 	if queryform.is_valid():
-		form_artistSelect = urllib2.quote(form.cleaned_data.get("artist_select"))
-		form_city =   urllib2.quote(form.cleaned_data.get("city"))
-		form_state = urllib2.quote(form.cleaned_data.get("state"))
-		mile_radius = urllib2.quote(form.cleaned_data.get("radius"))
+		form_artistSelect = urllib2.quote(queryform.cleaned_data.get("artist_select"))
+		form_city =   urllib2.quote(queryform.cleaned_data.get("city"))
+		form_state = urllib2.quote(queryform.cleaned_data.get("state"))
+		mile_radius = urllib2.quote(queryform.cleaned_data.get("radius"))
 
 		#print "testing"
 		url = "http://api.bandsintown.com/events/search?artists[]=" + form_artistSelect + "&location=" +form_city+","+ form_state+"&radius="+ mile_radius + "&format=json&app_id=YOUR_APP_ID"
@@ -104,9 +104,9 @@ def search(request):
 
 		}
 	if modalform.is_valid():
-		form_recipient = form.cleaned_data.get("rec_email")
-     	form_message = form.cleaned_data.get("message")
-     	form_recname = form.cleaned_data.get("rec_name")
+		form_recipient = modalform.cleaned_data.get("rec_email")
+     	form_message = modalform.cleaned_data.get("message")
+     	form_recname = modalform.cleaned_data.get("rec_name")
      	print form_recipient
      	print form_message
      	print form_recname
