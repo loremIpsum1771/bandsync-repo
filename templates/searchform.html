@@ -334,6 +334,12 @@ function buildInvite( ) {
 <!-- <h1>Concert Invite page </h1> -->
 <br><br><br>
 <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Invite a friend to a concert</button> -->
+{% if user.is_authenticated %}
+<div class='row'>
+<div class='col-sm-6 col-sm-offset-3 text-align-center'>
+<p>Logout? <a href="{% url 'registration_logout' %}"></a>!</p>
+</div>
+{% endif %}
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
