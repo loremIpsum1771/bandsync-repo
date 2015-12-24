@@ -131,4 +131,6 @@ CORS_ORIGIN_ALLOW_ALL = True
 #Django registration redux settings
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = '/profile/'
+LOGIN_URL = '/accounts/login/'
 SITE_ID = 1
