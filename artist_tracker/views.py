@@ -48,6 +48,7 @@ def home(request):
 def search(request):
 	queryform = SearchForm(request.POST or None)
 	modalform = ModalForm(request.POST or None)
+	#print "query form is valid = " + str(modalform.is_valid())
 	if queryform.is_valid():
 		form_artistSelect = urllib2.quote(queryform.cleaned_data.get("artist_select"))
 		form_city =   urllib2.quote(queryform.cleaned_data.get("city"))
@@ -103,6 +104,7 @@ def search(request):
 			"queryform" : queryform	
 
 		}
+	#print "modal form is valid = " + str(modalform.is_valid())
 	if modalform.is_valid():
 		form_recipient = modalform.cleaned_data.get("rec_email")
      	form_message = modalform.cleaned_data.get("message")
