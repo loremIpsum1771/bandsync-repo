@@ -107,11 +107,11 @@ def search(request):
 	#print "modal form is valid = " + str(modalform.is_valid())
 	if modalform.is_valid():
 		form_recipient = modalform.cleaned_data.get("rec_email")
-     	form_message = modalform.cleaned_data.get("message")
-     	form_recname = modalform.cleaned_data.get("rec_name")
-     	print form_recipient
-     	print form_message
-     	print form_recname
+	     	form_message = modalform.cleaned_data.get("message")
+     		form_recname = modalform.cleaned_data.get("rec_name")
+	     	print form_recipient
+	     	print form_message
+	     	print form_recname
 
 	return render(request,"searchform.html" , context)
 
