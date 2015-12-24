@@ -27,16 +27,12 @@
 </head> 
     
 <body id = "top">
+     {% include 'navbar.html' %}
     {% include 'javascript.html' %}
     <!-- <header id="header" class="skel-layers-fixed"> -->
-                <h1><a href="#">Bandsync</a></h1>
-                <nav id="nav">
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="#" class="button special">Sign Up</a></li>
-                    </ul>
-                </nav>
-            </header>
+                
+                
+            
 
 <form id = "search" method= 'POST' action = ''>{% csrf_token %}
 {{ queryform|crispy }} 
