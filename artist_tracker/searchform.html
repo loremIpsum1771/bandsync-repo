@@ -1,3 +1,7 @@
+{% load crispy_forms_tags %}
+
+
+
 <!-- {% load crispy_forms_tags %} -->
 
 <!Doctype html>
@@ -5,8 +9,8 @@
 <html>
 <head>
 <title>Bandsync</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		{% include 'head_css.html' %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        {% include 'head_css.html' %}
 
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="" />
@@ -23,7 +27,7 @@
 </head> 
     
 <body id = "top">
-	{% include 'javascript.html' %}
+    {% include 'javascript.html' %}
     <!-- <header id="header" class="skel-layers-fixed"> -->
                 <h1><a href="#">Bandsync</a></h1>
                 <nav id="nav">
@@ -35,47 +39,138 @@
             </header>
 
 <form id = "search" method= 'POST' action = ''>{% csrf_token %}
-<!-- {{ form|crispy }} -->
-	<input type= "text" name = "artist_select" id = "artist_select" value ="" />
-	<input type= "text" name = "city" id = "city" value ="" />
-	<input type= "text" name = "state" id = "state" value ="" />
-
+{{ queryform|crispy }} 
 
 <input type= 'submit' value= 'Submit'>
-
-<br>
-<h1>Concert Invite page </h1>
-<br><br><br>
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Invite a friend to a concert</button>
-
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Invitation</h4>
-      </div>
-      <div class="modal-body">
-        
-        <div id="container">  </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
+</form><br>
+<div id = "container">
+<!-- <ul id = "results" class="list-group">
+  <li class="list-group-item">Cras justo odio</li>
+  <li class="list-group-item">Dapibus ac facilisis in</li>
+  <li class="list-group-item">Morbi leo risus</li>
+  <li class="list-group-item">Porta ac consectetur ac</li>
+  <li class="list-group-item">Vestibulum at eros</li>
+  </ul> -->
 </div>
 
 
+ 
+
 <!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
 <script>
+// console.log( "form_artistSelect\n" + {{form_artistSelect}} );
+// console.log( "raw_dts\n" + {{raw_dts}} );
+// console.log( "ticket_statuses\n" + {{ticket_statuses}} );
+// console.log( "venue_names\n" + {{venue_names}} );
+// console.log( "venue_cities\n" + {{venue_cities}} );
+// console.log( "venue_region\n" + {{venue_region}} );
+
+
+
 var concertData = {};
 var eventInfo = {};
 var ticketInfo = {};
+
+
+
+
+//console.log("length of artist list" + {{venue_names}}.length );
+var venues = {{venues|safe}};
+var dates = {{raw_dts|safe}};
+var ticket_statuses = {{ticket_statuses|safe}};
+var ticket_urls = {{ticket_urls|safe}};
+console.log("length of artist list" + venues.length);
+var $list = $("<ul  class='list-group'>");
+for(var i = 0; i < venues.length; i++){
+    
+    $list.append("<li class='list-group-item'>Artist: {{form_artistSelect}}  Location: " + venues[i].city + ', ' + venues[i].region +' Venue: ' + venues[i].name + 
+       "Date: " + dates[i] + "tickets status: " + ticket_statuses[i] + "<br><a href = '" + ticket_urls[i] +"'" + "> ticket link</a>  
+       {{% if user.is_authenticated %}}
+            <button id ='invite'type='button' class='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal' venue= " +venues[i] +" date = "+ dates[i]+ +"ticket_url = "+ticket_urls[i]+" artist = {{form_artistSelect}} >Invite a friend</button>  <button id = 'save' type='button' class='btn btn-primary-outline'> Save concert</button> 
+        {{% endif %}}
+            </li>"); 
+
+}
+
+// var $resultObj = $('<div id = "inviteObj" style="margin:100px"></div>');
+// $resultObj.append($divline);
+$list.appendTo($("#container"));
+
+// $("#save").click(function() {
+//     $.ajax({
+//         url: your_url,
+//         method: 'POST',
+//         data: {
+//             name: value,
+//             click: True
+//         }
+//         success:function(data){
+
+//         }
+
+//     });
+// });
+   
+// $("#invite").click(function() {
+//     var raw_dt;
+//     var rec_email;//
+//     var concert_id;//
+//     var artist_id;//
+//     var message;//
+//     var rec_name;//
+//     var ticket_url;
+//     var venue;
+
+//     raw_dt = $(this).attr("date");
+    
+//     venue = $(this).attr("venue");
+//     ticket_url = $(this).attr("ticket_url");
+
+
+//     $.ajax({
+//         url: your_url,
+//         method: 'POST',
+//         data: {
+//             name: value,
+//             click: True
+//         }
+//         success:function(data){
+            
+//         }
+
+//     });
+// });  
+
+    //  $inviteObj.append($divline);
+    // var $div = $("<div></div>");
+    
+    // console.log(eventInfo['band']);
+    // var $table = $("<table style=margin:10px></table>");
+    // console.log("Ticket info len Before for loop " + Object.keys(ticketInfo).length );
+    // for (var j = 0; j < Object.keys(ticketInfo).length; j++) {
+    //     var $line = $("<tr></tr>");
+    //     $line.append($("<td>venue: </td>").html(ticketInfo[j]["venuename"]));
+    //     console.log("Line Append 1: " + ticketInfo[j]["venuename"]);
+    //     $line.append($("<td>artist name: $</td>").html(ticketInfo[j]["artistname"]));
+    //     console.log("Line Append 2: " + ticketInfo[j]["artistname"]);
+    //     $line.append($("<td>city: </td>").html(ticketInfo[j]["city"]));
+    //     console.log("Line Append 3: " + ticketInfo[j]["city"]);
+    //     $table.append($line);
+    // }
+
+
+    // $table.appendTo(document.body);
+    // Add a div for the invites
+    // var $divline2 = $("<div></div>");
+    // $divline2.append(
+    //  "Band Description: " + eventInfo["description"] + "<br><br>Band Site: " + eventInfo["site"] + "<br>");
+    // $inviteObj.append($divline2);
+    // $inviteObj.appendTo($("#container"));
+    // $table.appendTo($("#ticketObj"));
+    // $descrLine.appendTo($("#inviteObj"));
+
+
+
 
 function makeInvite() {
     var metaInfo = concertData[i];
@@ -142,6 +237,8 @@ function buildInvite( ) {
         console.log("Line Append 3: " + ticketInfo[j]["city"]);
         $table.append($line);
     }
+
+
     //$table.appendTo(document.body);
     //Add a div for the invites
     // var $divline2 = $("<div></div>");
@@ -153,40 +250,114 @@ function buildInvite( ) {
     //$descrLine.appendTo($("#inviteObj"));
 
 }
-function runMainProgram() {
-//console.log(concertData['global']);
- makeInvite();
- buildInvite();
-}
-var frm = $('#search');
-frm.submit(function(){
-	var artist = $("#artist_select");
-	var city = $("#city");
-	var state = $("#state");
+//      function runMainProgram() {
+// //console.log(concertData['global']);
+//  makeInvite();
+//  buildInvite();
+// }
 
 
-	$.ajax({
-    dataType:'json',
-    url: 'http://api.bandsintown.com/events/search?artists[]=' + artist + '&location='+city + ','+state+'&radius=150&format=json&app_id=YOUR_APP_ID',
+// function getCookie(name){
+//     var cookieValue = null;
+//     if(document.cookie && document.Cookie != ''){
+//         var cookies = document.cookie.split(';');
+//         for(var i = 0; i <cookies.length; i++){
+//             var cookie = jQuery.trim(cookies[i]);
+//             if(cookie.substring(0, name.length + 1) == (name + '=')){
+//                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+//                 break;
+//             }
+//         }
+//     }
+//     return cookieValue;
+// }
 
-    success: function(data){
-        //console.log(data);
-       concertData = data;
-       runMainProgram();
-        $(data.tickets).each(function(index, value){
-                console.log(value.p);
-        });
-    }
-    error: function(data){
-    	//$("#MESSAGE-DIV").html("Something went wrong!");
-    }
 
-});
-	return false;
-});
+
+// var csrftoken = getCookie('csrftoken');
+
+// $.ajax({
+//     headers: {'X-CSRFToken' :csrftoken},
+//     dataType:'json',
+//     url: 'http://api.bandsintown.com/events/search?artists[]=foals&location=New York,NY&radius=150&format=json&app_id=YOUR_APP_ID',
+//     success: function(data){
+//         //console.log(data);
+//         concertData = data;
+//         runMainProgram();
+//         $(data.tickets).each(function(index, value){
+
+//                 console.log(value.p);
+//         });
+//     }
+
+// })
+
+
+
+// var frm = $('#search');
+// frm.submit(function(){
+//      // var artist = $("#artist_select");
+//      // var city = $("#city");
+//      // var state = $("#state");
+
+
+//  $.ajax({
+//     dataType:'json',
+//     url: 'http://api.bandsintown.com/events/search?artists[]=foals&location=New York,NY&radius=150&format=json&app_id=YOUR_APP_ID',
+//     // url: 'http://api.bandsintown.com/events/search?artists[]=' + artist + '&location='+city + ','+state+'&radius=150&format=json&app_id=YOUR_APP_ID',
+//     success: function(data){
+//         //console.log(data);
+//        concertData = data;
+//        runMainProgram();
+//         $(data.tickets).each(function(index, value){
+//                 console.log(value.p);
+//         });
+//     }
+//     error: function(data){
+//      //$("#MESSAGE-DIV").html("Something went wrong!");
+//     }
+
+// })
+//  //return false;
+// })
 
 
 
 
 // </script>
+<br>
+<!-- <h1>Concert Invite page </h1> -->
+<br><br><br>
+<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Invite a friend to a concert</button> -->
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Invitation</h4>
+      </div>
+      <div class="modal-body">
+        
+        <div id="container">  </div>
+            <form id = "search" method= 'POST' action = ''>{%csrf_token %}
+            {{ modalform|crispy }} 
+            <input type= 'submit' value= 'Submit'>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+     <script src="../../dist/js/bootstrap.min.js"></script>
+</body>
+</html>
 
