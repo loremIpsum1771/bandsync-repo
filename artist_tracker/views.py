@@ -108,9 +108,9 @@ def search(request):
      	form_message = forms.cleaned_data.get("message")
      	form_recname = forms.cleaned_data.get("rec_name")
      	print form_recipient
-     	print form message
+     	print form_message
      	print form_recname
-     	
+
 	return render(request,"searchform.html" , context)
 
 
