@@ -105,8 +105,8 @@ def search(request):
 		}
 	if modalform.is_valid():
 		form_recipient = form.cleaned_data.get("rec_email")
-     	form_message = forms.cleaned_data.get("message")
-     	form_recname = forms.cleaned_data.get("rec_name")
+     	form_message = form.cleaned_data.get("message")
+     	form_recname = form.cleaned_data.get("rec_name")
      	print form_recipient
      	print form_message
      	print form_recname
