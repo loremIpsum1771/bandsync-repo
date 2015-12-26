@@ -78,255 +78,71 @@ var dates = {{raw_dts|safe}};
 var ticket_statuses = {{ticket_statuses|safe}};
 var ticket_urls = {{ticket_urls|safe}};
 console.log("length of artist list" + venues.length);
-var $list = $("<ul  class='list-group'>");
-for(var i = 0; i < venues.length; i++){
+// var $list = $("<ul  class='list-group'>");
+// for(var i = 0; i < venues.length; i++){
     
-    $list.append("<li class='list-group-item'>Artist: {{form_artistSelect}}  Location: " + venues[i].city + ', ' + venues[i].region +' Venue: ' + venues[i].name + 
-       "Date: " + dates[i] + "tickets status: " + ticket_statuses[i] + "<br><a href = '" + ticket_urls[i] +"'" + "> ticket link</a>  "+
-       "{% if user.is_authenticated %}"+
-    "<button id ='invite'type='button' class='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal' venue= " +venues[i] +" date = "+ dates[i] +
-    "ticket_url = "+ticket_urls[i]+" artist = {{form_artistSelect}} >Invite a friend</button>  <button id = 'save' type='button' class='btn btn-" + 
-    "primary-outline'> Save concert</button> "+
-        "{% endif %}"+
-            "</li>"); 
+//     $list.append("<li class='list-group-item'>Artist: {{form_artistSelect}}  Location: " + venues[i].city + ', ' + venues[i].region +' Venue: ' + venues[i].name + 
+//        "Date: " + dates[i] + "tickets status: " + ticket_statuses[i] + "<br><a href = '" + ticket_urls[i] +"'" + "> ticket link</a>  "+
+//        "{% if user.is_authenticated %}"+
+//     "<button id ='invite'type='button' class='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal' venue= " +venues[i] +" date = "+ dates[i] +
+//     "ticket_url = "+ticket_urls[i]+" artist = {{form_artistSelect}} >Invite a friend</button>  <button id = 'save' type='button' class='btn btn-" + 
+//     "primary-outline'> Save concert</button> "+
+//         "{% endif %}"+
+//             "</li>"); 
 
-}
+// }
+
+<ul class= 'list-grou'>
+    {% for i in range(0,len_values) %}
+        <li  class = 'list-group-item'>
+            Artist: {{form_artistSelect}}
+            Location: {{venues.i.city}}, {{venues.i.region}}
+            Venue: {{venues.i.name}}
+            Date: {{dates.i}}
+            tickets status: {{ticket_statuses.i}}<br>
+            <a href = {{ticket_urls.i}}> ticket link </a>
+
+            {% if user.is_authenticated %}
+                <button id = 'invite' type='button' class= 'btn btn-info btn-lg' data-toggle = 'modal' data-target='#myModal' venue={{venues.i}} date={{dates.i}} ticket_url={{ticket_urls.i}} artist = {{form_artistSelect}}> Invite a friend </button>
+                <button id = 'save' type = 'button' class = 'btn btn-primary-outline'> Save Concert </button>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+
+$("#mform").submit(function(){
+    var c = getCookie('csrftoken');
+
+    //var data1 = $().attr("");
+
+    var venue = $("invite").attr("venue");
+    var date = $("invite").attr("date");
+    var ticket_url =  $("invite").attr("ticekt_url");
+    var artist = $("invite").attr("artist");
+
+
+    $ajax({
+        context:this,
+        type : 'POST',
+        dataType: 'json',
+        url: '/artistsearch/'
+        data: {
+            csrfmiddlewaretoken: c,
+            //data_form: data1,
+            form_venue: venue,
+            form_date: date,
+            form_url: ticket_url,
+            form_artist: artist
+        },
+        success: function(response){}
+    });
+});
+
 
 // var $resultObj = $('<div id = "inviteObj" style="margin:100px"></div>');
 // $resultObj.append($divline);
-$list.appendTo($("#container"));
-
-// $("#mform").submit(function()){
-//     $('<input />').attr('type','hidden')
-//         .attr('')
-// }
-
-// $("#save").click(function() {
-//     $.ajax({
-//         url: your_url,
-//         method: 'POST',
-//         data: {
-//             name: value,
-//             click: True
-//         }
-//         success:function(data){
-
-//         }
-
-//     });
-// });
-   
-// $("#invite").click(function() {
-//     var raw_dt;
-//     var rec_email;//
-//     var concert_id;//
-//     var artist_id;//
-//     var message;//
-//     var rec_name;//
-//     var ticket_url;
-//     var venue;
-
-//     raw_dt = $(this).attr("date");
-    
-//     venue = $(this).attr("venue");
-//     ticket_url = $(this).attr("ticket_url");
-
-
-//     $.ajax({
-//         url: your_url,
-//         method: 'POST',
-//         data: {
-//             name: value,
-//             click: True
-//         }
-//         success:function(data){
-            
-//         }
-
-//     });
-// });  
-
-    //  $inviteObj.append($divline);
-    // var $div = $("<div></div>");
-    
-    // console.log(eventInfo['band']);
-    // var $table = $("<table style=margin:10px></table>");
-    // console.log("Ticket info len Before for loop " + Object.keys(ticketInfo).length );
-    // for (var j = 0; j < Object.keys(ticketInfo).length; j++) {
-    //     var $line = $("<tr></tr>");
-    //     $line.append($("<td>venue: </td>").html(ticketInfo[j]["venuename"]));
-    //     console.log("Line Append 1: " + ticketInfo[j]["venuename"]);
-    //     $line.append($("<td>artist name: $</td>").html(ticketInfo[j]["artistname"]));
-    //     console.log("Line Append 2: " + ticketInfo[j]["artistname"]);
-    //     $line.append($("<td>city: </td>").html(ticketInfo[j]["city"]));
-    //     console.log("Line Append 3: " + ticketInfo[j]["city"]);
-    //     $table.append($line);
-    // }
-
-
-    // $table.appendTo(document.body);
-    // Add a div for the invites
-    // var $divline2 = $("<div></div>");
-    // $divline2.append(
-    //  "Band Description: " + eventInfo["description"] + "<br><br>Band Site: " + eventInfo["site"] + "<br>");
-    // $inviteObj.append($divline2);
-    // $inviteObj.appendTo($("#container"));
-    // $table.appendTo($("#ticketObj"));
-    // $descrLine.appendTo($("#inviteObj"));
-
-
-
-
-function makeInvite() {
-    var metaInfo = concertData[i];
-
-
-    
-
-    console.log(eventInfo['site']);
-
-    for (var i = 0; i < concertData.length; i++) {
-        var json_obj = concertData[i];
-        var temp = {
-            'venuename' : json_obj['venue']['name'],
-            'city' : json_obj['venue']['city'],
-            'state' : json_obj['venue']['region'],
-            'country' : json_obj['venue']['country'],
-            'ticket_url' : json_obj['ticket_url'],
-            
-
-            'artistname' : json_obj['artists'][0]['name'],
-            'artistsite' : json_obj['artists'][0]['url'],   
-        };
-        console.log("Artist Name: " + temp["artistname"]);
-
-    //     var temp = {
-    //     'section': "Section: "+ii['l'],
-    //     'price': "Price: $" + ii['p'],
-    //     'row': "Row: " + ii['r'],
-        
-    // };  
-
-        
-    ticketInfo[i] = temp;
-    console.log("The value of i is: " + i);
-    console.log(ticketInfo[i]);
-    console.log("Ticket info len inside loop" + ticketInfo.length);
-    }
-    console.log("Thicket info" + ticketInfo[0]);
-    return ticketInfo;
-}
-
-function buildInvite( ) {
-
-    var $inviteObj = $('<div id = "inviteObj" style="margin:100px"></div>');
-    // var $divline = $("<div id = ticketObj></div>");
-
-    //  $divline.append(
-    //  'Invite a friend to see ' + eventInfo['band'] + '!<br><br><br> Location: New York, NY <br><br> Venue:' + eventInfo['venuename'] + '<br><br>Available Tickets:'
-    //  );
-
-    //  $inviteObj.append($divline);
-    //var $div = $("<div></div>");
-    
-    console.log(eventInfo['band']);
-    var $table = $("<table style=margin:10px></table>");
-    console.log("Ticket info len Before for loop " + Object.keys(ticketInfo).length );
-    for (var j = 0; j < Object.keys(ticketInfo).length; j++) {
-        var $line = $("<tr></tr>");
-        $line.append($("<td>venue: </td>").html(ticketInfo[j]["venuename"]));
-        console.log("Line Append 1: " + ticketInfo[j]["venuename"]);
-        $line.append($("<td>artist name: $</td>").html(ticketInfo[j]["artistname"]));
-        console.log("Line Append 2: " + ticketInfo[j]["artistname"]);
-        $line.append($("<td>city: </td>").html(ticketInfo[j]["city"]));
-        console.log("Line Append 3: " + ticketInfo[j]["city"]);
-        $table.append($line);
-    }
-
-
-    //$table.appendTo(document.body);
-    //Add a div for the invites
-    // var $divline2 = $("<div></div>");
-    // $divline2.append(
-    //  "Band Description: " + eventInfo["description"] + "<br><br>Band Site: " + eventInfo["site"] + "<br>");
-    // $inviteObj.append($divline2);
-    // $inviteObj.appendTo($("#container"));
-    $table.appendTo($("#ticketObj"));
-    //$descrLine.appendTo($("#inviteObj"));
-
-}
-//      function runMainProgram() {
-// //console.log(concertData['global']);
-//  makeInvite();
-//  buildInvite();
-// }
-
-
-// function getCookie(name){
-//     var cookieValue = null;
-//     if(document.cookie && document.Cookie != ''){
-//         var cookies = document.cookie.split(';');
-//         for(var i = 0; i <cookies.length; i++){
-//             var cookie = jQuery.trim(cookies[i]);
-//             if(cookie.substring(0, name.length + 1) == (name + '=')){
-//                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-//                 break;
-//             }
-//         }
-//     }
-//     return cookieValue;
-// }
-
-
-
-// var csrftoken = getCookie('csrftoken');
-
-// $.ajax({
-//     headers: {'X-CSRFToken' :csrftoken},
-//     dataType:'json',
-//     url: 'http://api.bandsintown.com/events/search?artists[]=foals&location=New York,NY&radius=150&format=json&app_id=YOUR_APP_ID',
-//     success: function(data){
-//         //console.log(data);
-//         concertData = data;
-//         runMainProgram();
-//         $(data.tickets).each(function(index, value){
-
-//                 console.log(value.p);
-//         });
-//     }
-
-// })
-
-
-
-// var frm = $('#search');
-// frm.submit(function(){
-//      // var artist = $("#artist_select");
-//      // var city = $("#city");
-//      // var state = $("#state");
-
-
-//  $.ajax({
-//     dataType:'json',
-//     url: 'http://api.bandsintown.com/events/search?artists[]=foals&location=New York,NY&radius=150&format=json&app_id=YOUR_APP_ID',
-//     // url: 'http://api.bandsintown.com/events/search?artists[]=' + artist + '&location='+city + ','+state+'&radius=150&format=json&app_id=YOUR_APP_ID',
-//     success: function(data){
-//         //console.log(data);
-//        concertData = data;
-//        runMainProgram();
-//         $(data.tickets).each(function(index, value){
-//                 console.log(value.p);
-//         });
-//     }
-//     error: function(data){
-//      //$("#MESSAGE-DIV").html("Something went wrong!");
-//     }
-
-// })
-//  //return false;
-// })
-
-
+//$list.appendTo($("#container"));
 
 
 // </script>
