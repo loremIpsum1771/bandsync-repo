@@ -110,23 +110,23 @@ def search(request):
 	#print "modal form is valid = " + str(modalform.is_valid())
 	if modalform.is_valid():
 		form_recipient = modalform.cleaned_data.get("rec_email")
-     	form_message = modalform.cleaned_data.get("message")
- 		form_recname = modalform.cleaned_data.get("rec_name")
-     	print form_recipient
-     	print form_message
-     	print form_recname
-     	concert_venue = modalform.cleaned_data.get("form_venue")
-     	concert_date= modalform.cleaned_data.get("form_date")
-     	concert_url = modalform.cleaned_data.get("ticket_url")
-     	artist = modalform.cleaned_data.get("artist")
-     	print "concert venue"
-     	print concert_venue
-     	print "concert date"
-     	print concert_date
-     	print "concert_url"
-     	print concert_url
-     	print "artist"
-     	print concert_artist
+	 	form_message = modalform.cleaned_data.get("message")
+		form_recname = modalform.cleaned_data.get("rec_name")
+	 	print form_recipient
+	 	print form_message
+	 	print form_recname
+	 	concert_venue = modalform.cleaned_data.get("form_venue")
+	 	concert_date= modalform.cleaned_data.get("form_date")
+	 	concert_url = modalform.cleaned_data.get("ticket_url")
+	 	artist = modalform.cleaned_data.get("artist")
+	 	print "concert venue"
+	 	print concert_venue
+	 	print "concert date"
+	 	print concert_date
+	 	print "concert_url"
+	 	print concert_url
+	 	print "artist"
+	 	print concert_artist
 
 	return render(request,"searchform.html" , context)
 
