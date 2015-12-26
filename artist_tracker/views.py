@@ -72,7 +72,7 @@ def search(request):
 		# venue_cities = [i.get("venue").get("city").encode("utf-8") for i in data]
 		# venue_region = [i.get("venue").get("region").encode("utf-8") for i in data]
 
-
+		len_values = len(ticket_urls)
 
 		# print "\ntitles\n"
 		# print titles
@@ -92,7 +92,7 @@ def search(request):
 		# print venue_region
 	
 		context = {
-			"len_values" : len(venues.objects.all()),
+			"len_values" : len_values,
 			"queryform" : queryform,
 			"modalform" : modalform,
 			"form_artistSelect" : form_artistSelect,
