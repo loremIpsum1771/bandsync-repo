@@ -94,10 +94,9 @@
 // var $resultObj = $('<div id = "inviteObj" style="margin:100px"></div>');
 // $resultObj.append($divline);
 
-
+</script>
 
 <ul class= 'list-group'>
-    
     {% for ticket in data %}
         <li  class = 'list-group-item' >
             Title: {{ticket.title}}
@@ -114,6 +113,7 @@
         </li>
     {% endfor %}
 </ul>
+<script type="text/javascript">
 $("#mform").submit(function(){
     var c = getCookie('csrftoken');
     //var data1 = $().attr("");
