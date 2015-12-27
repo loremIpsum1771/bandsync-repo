@@ -121,10 +121,10 @@ def search(request):
 	 	print form_recipient
 	 	print form_message
 	 	print form_recname
-	 	concert_venue = modalform.cleaned_data.get("form_venue")
-	 	concert_date= modalform.cleaned_data.get("form_date")
-	 	concert_url = modalform.cleaned_data.get("ticket_url")
-	 	artist = modalform.cleaned_data.get("artist")
+	 	concert_venue = modalform.cleaned_data.get("additionalValues[venue]")
+	 	concert_date= modalform.cleaned_data.get("additionalValues[uf_date]")
+	 	concert_url = modalform.cleaned_data.get("additionalValues[ticket_url]")
+	 	artist = modalform.cleaned_data.get("additionalValues[artist]")
 	 	print "concert venue"
 	 	print concert_venue
 	 	print "concert date"
@@ -132,7 +132,7 @@ def search(request):
 	 	print "concert_url"
 	 	print concert_url
 	 	print "artist"
-	 	print concert_artist
+	 	print artist
 
 	return render(request,"searchform.html" , context)
 
