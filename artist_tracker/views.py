@@ -57,9 +57,10 @@ def search(request):
 		mile_radius = urllib2.quote(queryform.cleaned_data.get("radius"))
 
 		#print "testing"
-		url = "http://api.bandsintown.com/events/search?artists[]=" + form_artistSelect + "/events/search.json?api_version=2.0&app_id=YOUR_APP_ID&location=" +form_city+","+ form_state+"&radius="+ mile_radius 
+		url = "http://api.bandsintown.com/artists/" + form_artistSelect + "/events/search.json?api_version=2.0&app_id=YOUR_APP_ID&location=" +form_city+","+ form_state+"&radius="+ mile_radius
 		data = json.load(urllib2.urlopen(url))
 
+		
 		context = data
 		#titles = [ i.get("title") for i in data]
 		raw_dts = json.dumps([i.get("datetime") for i in data])

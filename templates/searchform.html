@@ -114,36 +114,34 @@
         </li>
     {% endfor %}
 </ul>
+$("#mform").submit(function(){
+    var c = getCookie('csrftoken');
+    //var data1 = $().attr("");
+    var extraData = [];
+    extraData['venue'] = $("invite").attr("venue");
+    extraData['artist'] = $("invite").attr("artist");
+    extraData['f_date'] = $("invite").attr("formatted_date");
+    extraData['uf_date'] = $("invite").attr("date");
+    extraData['ticket_url'] =  $("invite").attr("ticket_url");
+    extraData['city'] = $("invite").attr("city");
+    extraData['region'] = $("invite").attr("region");
+    extraData['artist'] = $("invite").attr("artist");
 
 
-// $("#mform").submit(function(){
-//     var c = getCookie('csrftoken');
-//     //var data1 = $().attr("");
-//     var extraData = [];
-//     extraData['venue'] = $("invite").attr("venue");
-//     extraData['artist'] = $("invite").attr("artist");
-//     extraData['f_date'] = $("invite").attr("formatted_date");
-//     extraData['uf_date'] = $("invite").attr("date");
-//     extraData['ticket_url'] =  $("invite").attr("ticket_url");
-//     extraData['city'] = $("invite").attr("city");
-//     extraData['region'] = $("invite").attr("region");
-//     extraData['artist'] = $("invite").attr("artist");
-
-
-//     $ajax({
-//         context:this,
-//         type : 'POST',
-//         dataType: 'json',
-//         url: '/artistsearch/'
-//         data: {
-//             csrfmiddlewaretoken: c,
-//             //data_form: data1,
-//             additionalValues: extraData,
+    $ajax({
+        context:this,
+        type : 'POST',
+        dataType: 'json',
+        url: '/artistsearch/'
+        data: {
+            csrfmiddlewaretoken: c,
+            //data_form: data1,
+            additionalValues: extraData,
             
-//         },
-//         success: function(response){}
-//     });
-// });
+        },
+        success: function(response){}
+    });
+});
 
 
 // </script>
