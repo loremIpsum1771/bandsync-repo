@@ -118,8 +118,11 @@ $("#mform").submit(function(){
     //var data1 = $().attr("");
     var extraData = [];
     extraData['venue'] = $("#invite").data("venue");
+    console.log(extraData['venue']);
     extraData['artist'] = $("#invite").data("artist");
+    console.log(extraData['artist']);
     extraData['f_date'] = $("#invite").data("formatted_date");
+    console.log(extraData['f_date']);
     extraData['uf_date'] = $("#invite").data("date");
     extraData['ticket_url'] =  $("#invite").data("ticket_url");
     extraData['city'] = $("#invite").data("city");
