@@ -106,7 +106,7 @@
             tickets status: {{ticket.ticket_status}}<br>
             <a href = {{ticket.ticket_url}}> ticket url</a>
             {% if user.is_authenticated %}
-                <button id = 'invite' type='button' class= 'btn btn-info btn-lg' data-toggle = 'modal' data-target='#myModal' artist = {{ticket.artists.name}} venue={{ticket.venue.name}} date = {{ticket.datetime}} formatted_date = {{ticket.formatted_datetime}} city= {{ticket.venue.city}} region = {{ticket.venue.region}} ticket_url={{ticket.ticket_url}} > Invite a friend </button>    
+                <button id = 'invite' type='button' class= 'btn btn-info btn-lg' data-toggle = 'modal' data-target='#myModal' data-artist = {{ticket.artists.name}} data-venue={{ticket.venue.name}} data-date = {{ticket.datetime}} data-formatted_date = {{ticket.formatted_datetime}} data-city= {{ticket.venue.city}} data-region = {{ticket.venue.region}} data-ticket_url={{ticket.ticket_url}} > Invite a friend </button>    
                 <button id = 'save' type = 'button' class = 'btn btn-primary-outline'> Save Concert </button>
             {% endif %}
         </li>
@@ -117,14 +117,14 @@ $("#mform").submit(function(){
     var c = getCookie('csrftoken');
     //var data1 = $().attr("");
     var extraData = [];
-    extraData['venue'] = $("#invite").attr("venue");
-    extraData['artist'] = $("#invite").attr("artist");
-    extraData['f_date'] = $("#invite").attr("formatted_date");
-    extraData['uf_date'] = $("#invite").attr("date");
-    extraData['ticket_url'] =  $("#invite").attr("ticket_url");
-    extraData['city'] = $("#invite").attr("city");
-    extraData['region'] = $("#invite").attr("region");
-    extraData['artist'] = $("#invite").attr("artist");
+    extraData['venue'] = $("#invite").data("venue");
+    extraData['artist'] = $("#invite").data("artist");
+    extraData['f_date'] = $("#invite").data("formatted_date");
+    extraData['uf_date'] = $("#invite").data("date");
+    extraData['ticket_url'] =  $("#invite").data("ticket_url");
+    extraData['city'] = $("#invite").data("city");
+    extraData['region'] = $("#invite").data("region");
+    extraData['artist'] = $("#invite").data("artist");
 
     var PostData = {csrfmiddlewaretoken: c, additionalValues:extraData}
     $ajax({
