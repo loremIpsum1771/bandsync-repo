@@ -103,9 +103,8 @@
             Location: {{ticket.formatted_location}}
             Venue: {{ticket.venue.name}}
             Date: {{ticket.formatted_datetime}}
-            Ticket URL: {{ticket.ticket_url}}
             tickets status: {{ticket.ticket_status}}<br>
-            <a href = {{ticket.url}}> ticket link </a>
+            <a href = {{ticket.ticket_url}}> ticket url</a>
             {% if user.is_authenticated %}
                 <button id = 'invite' type='button' class= 'btn btn-info btn-lg' data-toggle = 'modal' data-target='#myModal' artist = {{ticket.artists.name}} venue={{ticket.venue.name}} date = {{ticket.datetime}} formatted_date = {{ticket.formatted_datetime}} city= {{ticket.venue.city}} region = {{ticket.venue.region}} ticket_url={{ticket.ticket_url}} > Invite a friend </button>    
                 <button id = 'save' type = 'button' class = 'btn btn-primary-outline'> Save Concert </button>
@@ -132,7 +131,7 @@ $("#mform").submit(function(){
         context:this,
         type : 'POST',
         dataType: 'json',
-        url: '/artistsearch/'
+        url: '/artistsearch/',
         data: {
             csrfmiddlewaretoken: c,
             //data_form: data1,
