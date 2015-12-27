@@ -62,13 +62,13 @@ def search(request):
 
 		#url = "http://api.bandsintown.com/events/search?artists[]=" + form_artistSelect + "&location=" +form_city+","+ form_state+"&radius="+ mile_radius + "&format=json&app_id=YOUR_APP_ID"
 
-		context {
+		context = {
 			"queryform" : queryform,
 			"modalform" : modalform,
 			"data": data
 		}
 		#titles = [ i.get("title") for i in data]
-		raw_dts = json.dumps([i.get("datetime") for i in data])
+		titles = json.dumps([i.get("title") for i in data])
 		
 		#formatted_dts = [i.get("formatted_datetime") for i in data]
 		ticket_urls = json.dumps([i.get("ticket_url").encode("utf-8") for i in data])
@@ -83,8 +83,8 @@ def search(request):
 
 		# print "\ntitles\n"
 		# print titles
-		print "\nraw_dts\n"
-		print raw_dts
+		print "\ntitles\n"
+		print titles
 		print "\nformatted_dts\n"
 		# print formatted_dts
 		# print "\nticket_urls\n"
