@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'bandsyncdjango@gmail.com'
-EMAIL_HOST_PASSWORD = 'dmuy3193'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
@@ -93,10 +93,10 @@ WSGI_APPLICATION = 'bandsync.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ceyron',                 
+        'NAME': '',                 
         'HOST' : "127.0.0.1",
         'PORT' : '3306',
-        'USER' : 'ceyron',
+        'USER' : '',
         'PASSWORD' : 'AB74BF43B5C1D9BEDF0BC', 
     }
 }
