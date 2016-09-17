@@ -10,19 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'x*w%lj0%@q%0t_zunqg9xxp*+1lby8mndcknyz+jw#r&&i7of2'
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -37,7 +31,6 @@ EMAIL_USE_TLS = True
 # Application definition
 
 INSTALLED_APPS = (
-    #django app
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -97,7 +90,7 @@ DATABASES = {
         'HOST' : "127.0.0.1",
         'PORT' : '3306',
         'USER' : '',
-        'PASSWORD' : 'AB74BF43B5C1D9BEDF0BC', 
+        'PASSWORD' : '', 
     }
 }
 
