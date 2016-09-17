@@ -1,9 +1,5 @@
 {% load crispy_forms_tags %}
 
-
-
-<!-- {% load crispy_forms_tags %} -->
-
 <!Doctype html>
 
 <html>
@@ -15,20 +11,11 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
-       <!-- <script src="js/skel.min.js"></script>
-        <script src="js/skel-layers.min.js"></script>
-        <script src="js/init.js"></script>
-        <noscript>
-            <link rel="stylesheet" href="css/skel.css" />
-            <link rel="stylesheet" href="css/style.css" />
-            <link rel="stylesheet" href="css/style-xlarge.css" />
-        </noscript>  -->
                     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head> 
     
 <body id = "top">
     {% include 'javascript.html' %}
-    <!-- <header id="header" class="skel-layers-fixed"> -->
                 <h1><a href="#">Bandsync</a></h1>
                 <nav id="nav">
                     <ul>
@@ -44,26 +31,9 @@
 <input type= 'submit' value= 'Submit'>
 </form><br>
 <div id = "container">
-<!-- <ul id = "results" class="list-group">
-  <li class="list-group-item">Cras justo odio</li>
-  <li class="list-group-item">Dapibus ac facilisis in</li>
-  <li class="list-group-item">Morbi leo risus</li>
-  <li class="list-group-item">Porta ac consectetur ac</li>
-  <li class="list-group-item">Vestibulum at eros</li>
-  </ul> -->
 </div>
 
-
- 
-
-<!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
 <script>
-// console.log( "form_artistSelect\n" + {{form_artistSelect}} );
-// console.log( "raw_dts\n" + {{raw_dts}} );
-// console.log( "ticket_statuses\n" + {{ticket_statuses}} );
-// console.log( "venue_names\n" + {{venue_names}} );
-// console.log( "venue_cities\n" + {{venue_cities}} );
-// console.log( "venue_region\n" + {{venue_region}} );
 
 
 
@@ -74,7 +44,7 @@ var ticketInfo = {};
 
 
 
-//console.log("length of artist list" + {{venue_names}}.length );
+
 var venues = {{venues|safe}};
 var dates = {{raw_dts|safe}};
 var ticket_statuses = {{ticket_statuses|safe}};
@@ -92,84 +62,7 @@ for(var i = 0; i < venues.length; i++){
 
 }
 
-// var $resultObj = $('<div id = "inviteObj" style="margin:100px"></div>');
-// $resultObj.append($divline);
 $list.appendTo($("#container"));
-
-// $("#save").click(function() {
-//     $.ajax({
-//         url: your_url,
-//         method: 'POST',
-//         data: {
-//             name: value,
-//             click: True
-//         }
-//         success:function(data){
-
-//         }
-
-//     });
-// });
-   
-// $("#invite").click(function() {
-//     var raw_dt;
-//     var rec_email;//
-//     var concert_id;//
-//     var artist_id;//
-//     var message;//
-//     var rec_name;//
-//     var ticket_url;
-//     var venue;
-
-//     raw_dt = $(this).attr("date");
-    
-//     venue = $(this).attr("venue");
-//     ticket_url = $(this).attr("ticket_url");
-
-
-//     $.ajax({
-//         url: your_url,
-//         method: 'POST',
-//         data: {
-//             name: value,
-//             click: True
-//         }
-//         success:function(data){
-            
-//         }
-
-//     });
-// });  
-
-    //  $inviteObj.append($divline);
-    // var $div = $("<div></div>");
-    
-    // console.log(eventInfo['band']);
-    // var $table = $("<table style=margin:10px></table>");
-    // console.log("Ticket info len Before for loop " + Object.keys(ticketInfo).length );
-    // for (var j = 0; j < Object.keys(ticketInfo).length; j++) {
-    //     var $line = $("<tr></tr>");
-    //     $line.append($("<td>venue: </td>").html(ticketInfo[j]["venuename"]));
-    //     console.log("Line Append 1: " + ticketInfo[j]["venuename"]);
-    //     $line.append($("<td>artist name: $</td>").html(ticketInfo[j]["artistname"]));
-    //     console.log("Line Append 2: " + ticketInfo[j]["artistname"]);
-    //     $line.append($("<td>city: </td>").html(ticketInfo[j]["city"]));
-    //     console.log("Line Append 3: " + ticketInfo[j]["city"]);
-    //     $table.append($line);
-    // }
-
-
-    // $table.appendTo(document.body);
-    // Add a div for the invites
-    // var $divline2 = $("<div></div>");
-    // $divline2.append(
-    //  "Band Description: " + eventInfo["description"] + "<br><br>Band Site: " + eventInfo["site"] + "<br>");
-    // $inviteObj.append($divline2);
-    // $inviteObj.appendTo($("#container"));
-    // $table.appendTo($("#ticketObj"));
-    // $descrLine.appendTo($("#inviteObj"));
-
-
 
 
 function makeInvite() {
@@ -195,13 +88,7 @@ function makeInvite() {
         };
         console.log("Artist Name: " + temp["artistname"]);
 
-    //     var temp = {
-    //     'section': "Section: "+ii['l'],
-    //     'price': "Price: $" + ii['p'],
-    //     'row': "Row: " + ii['r'],
-        
-    // };  
-
+ 
         
     ticketInfo[i] = temp;
     console.log("The value of i is: " + i);
@@ -215,15 +102,6 @@ function makeInvite() {
 function buildInvite( ) {
 
     var $inviteObj = $('<div id = "inviteObj" style="margin:100px"></div>');
-    // var $divline = $("<div id = ticketObj></div>");
-
-    //  $divline.append(
-    //  'Invite a friend to see ' + eventInfo['band'] + '!<br><br><br> Location: New York, NY <br><br> Venue:' + eventInfo['venuename'] + '<br><br>Available Tickets:'
-    //  );
-
-    //  $inviteObj.append($divline);
-    //var $div = $("<div></div>");
-    
     console.log(eventInfo['band']);
     var $table = $("<table style=margin:10px></table>");
     console.log("Ticket info len Before for loop " + Object.keys(ticketInfo).length );
@@ -239,87 +117,9 @@ function buildInvite( ) {
     }
 
 
-    //$table.appendTo(document.body);
-    //Add a div for the invites
-    // var $divline2 = $("<div></div>");
-    // $divline2.append(
-    //  "Band Description: " + eventInfo["description"] + "<br><br>Band Site: " + eventInfo["site"] + "<br>");
-    // $inviteObj.append($divline2);
-    // $inviteObj.appendTo($("#container"));
     $table.appendTo($("#ticketObj"));
-    //$descrLine.appendTo($("#inviteObj"));
-
+ 
 }
-//      function runMainProgram() {
-// //console.log(concertData['global']);
-//  makeInvite();
-//  buildInvite();
-// }
-
-
-// function getCookie(name){
-//     var cookieValue = null;
-//     if(document.cookie && document.Cookie != ''){
-//         var cookies = document.cookie.split(';');
-//         for(var i = 0; i <cookies.length; i++){
-//             var cookie = jQuery.trim(cookies[i]);
-//             if(cookie.substring(0, name.length + 1) == (name + '=')){
-//                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-//                 break;
-//             }
-//         }
-//     }
-//     return cookieValue;
-// }
-
-
-
-// var csrftoken = getCookie('csrftoken');
-
-// $.ajax({
-//     headers: {'X-CSRFToken' :csrftoken},
-//     dataType:'json',
-//     url: 'http://api.bandsintown.com/events/search?artists[]=foals&location=New York,NY&radius=150&format=json&app_id=YOUR_APP_ID',
-//     success: function(data){
-//         //console.log(data);
-//         concertData = data;
-//         runMainProgram();
-//         $(data.tickets).each(function(index, value){
-
-//                 console.log(value.p);
-//         });
-//     }
-
-// })
-
-
-
-// var frm = $('#search');
-// frm.submit(function(){
-//      // var artist = $("#artist_select");
-//      // var city = $("#city");
-//      // var state = $("#state");
-
-
-//  $.ajax({
-//     dataType:'json',
-//     url: 'http://api.bandsintown.com/events/search?artists[]=foals&location=New York,NY&radius=150&format=json&app_id=YOUR_APP_ID',
-//     // url: 'http://api.bandsintown.com/events/search?artists[]=' + artist + '&location='+city + ','+state+'&radius=150&format=json&app_id=YOUR_APP_ID',
-//     success: function(data){
-//         //console.log(data);
-//        concertData = data;
-//        runMainProgram();
-//         $(data.tickets).each(function(index, value){
-//                 console.log(value.p);
-//         });
-//     }
-//     error: function(data){
-//      //$("#MESSAGE-DIV").html("Something went wrong!");
-//     }
-
-// })
-//  //return false;
-// })
 
 
 
@@ -328,7 +128,7 @@ function buildInvite( ) {
 <br>
 <!-- <h1>Concert Invite page </h1> -->
 <br><br><br>
-<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Invite a friend to a concert</button> -->
+
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
