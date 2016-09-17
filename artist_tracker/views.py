@@ -6,8 +6,6 @@ import urllib2
 from django.contrib.auth.decorators import login_required
 from .models import SignUp, Concert, Artist, ConcertOf, Follow, Invite
 
-# Create your views here.
-
 from django.core.mail import send_mail
 
 
