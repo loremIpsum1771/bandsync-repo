@@ -60,13 +60,6 @@ def search(request):
 		ticket_urls = json.dumps([i.get("ticket_url").encode("utf-8") for i in data])
 		ticket_statuses = json.dumps([i.get("ticket_status").encode("utf-8") for i in data])
 		venues = json.dumps([i["venue"] for i in data])
-
-		print "\ntitles\n"
-		print titles
-		print "\nformatted_dts\n"
-		print ticket_urls
-		print "\nticket_statuses\n"
-		print ticket_statuses
 	
 	else:
 		context = {
@@ -77,21 +70,11 @@ def search(request):
 		form_recipient = modalform.cleaned_data.get("rec_email")
 	 	form_message = modalform.cleaned_data.get("message")
 		form_recname = modalform.cleaned_data.get("rec_name")
-	 	print form_recipient
-	 	print form_message
-	 	print form_recname
 	 	concert_venue = modalform.cleaned_data.get("additionalValues[venue]")
 	 	concert_date= modalform.cleaned_data.get("additionalValues[uf_date]")
 	 	concert_url = modalform.cleaned_data.get("additionalValues[ticket_url]")
 	 	artist = modalform.cleaned_data.get("additionalValues[artist]")
-	 	print "concert venue"
-	 	print concert_venue
-	 	print "concert date"
-	 	print concert_date
-	 	print "concert_url"
-	 	print concert_url
-	 	print "artist"
-	 	print artist
+	 	
 
 	return render(request,"searchform.html" , context)
 
