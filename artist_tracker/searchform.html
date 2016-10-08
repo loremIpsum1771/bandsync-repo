@@ -36,20 +36,14 @@
 <script>
 
 
-
 var concertData = {};
 var eventInfo = {};
 var ticketInfo = {};
-
-
-
-
 
 var venues = {{venues|safe}};
 var dates = {{raw_dts|safe}};
 var ticket_statuses = {{ticket_statuses|safe}};
 var ticket_urls = {{ticket_urls|safe}};
-console.log("length of artist list" + venues.length);
 var $list = $("<ul  class='list-group'>");
 for(var i = 0; i < venues.length; i++){
     
@@ -68,11 +62,6 @@ $list.appendTo($("#container"));
 function makeInvite() {
     var metaInfo = concertData[i];
 
-
-    
-
-    console.log(eventInfo['site']);
-
     for (var i = 0; i < concertData.length; i++) {
         var json_obj = concertData[i];
         var temp = {
@@ -86,33 +75,21 @@ function makeInvite() {
             'artistname' : json_obj['artists'][0]['name'],
             'artistsite' : json_obj['artists'][0]['url'],   
         };
-        console.log("Artist Name: " + temp["artistname"]);
-
- 
-        
+      
     ticketInfo[i] = temp;
-    console.log("The value of i is: " + i);
-    console.log(ticketInfo[i]);
-    console.log("Ticket info len inside loop" + ticketInfo.length);
     }
-    console.log("Thicket info" + ticketInfo[0]);
     return ticketInfo;
 }
 
 function buildInvite( ) {
 
     var $inviteObj = $('<div id = "inviteObj" style="margin:100px"></div>');
-    console.log(eventInfo['band']);
     var $table = $("<table style=margin:10px></table>");
-    console.log("Ticket info len Before for loop " + Object.keys(ticketInfo).length );
     for (var j = 0; j < Object.keys(ticketInfo).length; j++) {
         var $line = $("<tr></tr>");
         $line.append($("<td>venue: </td>").html(ticketInfo[j]["venuename"]));
-        console.log("Line Append 1: " + ticketInfo[j]["venuename"]);
         $line.append($("<td>artist name: $</td>").html(ticketInfo[j]["artistname"]));
-        console.log("Line Append 2: " + ticketInfo[j]["artistname"]);
         $line.append($("<td>city: </td>").html(ticketInfo[j]["city"]));
-        console.log("Line Append 3: " + ticketInfo[j]["city"]);
         $table.append($line);
     }
 
@@ -121,12 +98,9 @@ function buildInvite( ) {
  
 }
 
-
-
-
-// </script>
+</script>
 <br>
-<!-- <h1>Concert Invite page </h1> -->
+
 <br><br><br>
 
 
