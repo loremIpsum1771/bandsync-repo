@@ -13,7 +13,7 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
-                    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head> 
     
 <body id = "top">
@@ -21,8 +21,6 @@
     {% include 'javascript.html' %}
                 
                 
-            
-
 <form id = "search" method= 'POST' action = ''>{% csrf_token %}
 {{ queryform|crispy }} 
 
@@ -55,11 +53,8 @@ $("#mform").submit(function(){
     var c = getCookie('csrftoken');
     var extraData = [];
     extraData['venue'] = $("#invite").data("venue");
-    alert(extraData['venue']);
     extraData['artist'] = $("#invite").data("artist");
-    alert(extraData['artist']);
     extraData['f_date'] = $("#invite").data("formatted_date");
-    alert(extraData['f_date']);
     extraData['uf_date'] = $("#invite").data("date");
     extraData['ticket_url'] =  $("#invite").data("ticket_url");
     extraData['city'] = $("#invite").data("city");
